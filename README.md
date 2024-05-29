@@ -1,2 +1,2 @@
-# tallerDeIntegracion
+# MisPrimerosPasos
 Proyecto taller de integracion
