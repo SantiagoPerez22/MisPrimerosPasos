@@ -12,22 +12,22 @@ Proyecto taller de integracion
    
                    Pantalla 0 “Splash Screen”
    
-                         Título de la App
-                         Imagen de la App
+                  X      Título de la App
+                  X      Imagen de la App
                          Elemento para indicar que la aplicación está realizando alguna acción de
                           ingreso o carga al sistema
-                         Debe ser capaz de “cerrarse” automáticamente luego de unos segundos
+                  X      Debe ser capaz de “cerrarse” automáticamente luego de unos segundos
                         de ejecución
    
                    Pantalla 1 “Ingreso”
    
                          Título de la App
                          Imagen de la App
-                         Elemento para ingresar Nombre de Usuario (con Pista)
-                         Elemento para ingresar Contraseña del Usuario (con Pista)
-                         Elemento para acceder a la App: “INGRESAR” (*)
-                         Elemento para acceder al Registro de Usuario: “Crear Cuenta de Usuario”
-                         Elementos para acceder a las RRSS de la Compañía (mínimo 3 RRSS y
+                  X      Elemento para ingresar Nombre de Usuario (con Pista)
+                  X      Elemento para ingresar Contraseña del Usuario (con Pista)
+                  X      Elemento para acceder a la App: “INGRESAR” (*)
+                  X      Elemento para acceder al Registro de Usuario: “Crear Cuenta de Usuario”
+                  X      Elementos para acceder a las RRSS de la Compañía (mínimo 3 RRSS y
                         sin acción)
    
                    Pantalla 2 “Registro”
@@ -38,7 +38,7 @@ Proyecto taller de integracion
                          Elemento para ingresar Contraseña del Usuario (con Pista)
                          Elemento para comprobar Contraseña del Usuario bien escrita (con Pista)
                          Elemento para generar el registro: “REGISTRAR” (*)
-                         Elementos para acceder a las RRSS de la Compañía (mínimo 3 RRSS)
+                   X     Elementos para acceder a las RRSS de la Compañía (mínimo 3 RRSS)
    
                    Pantalla 3 “Pantalla Principal”
    
