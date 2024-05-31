@@ -1,5 +1,3 @@
-import java.awt.SplashScreen
-
 plugins {
     alias(libs.plugins.androidApplication)
 }
@@ -36,10 +34,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
     // Se agrega esta dependencia para poder editar el splashart
     implementation ("androidx.core:core-splashscreen:1.0.1")
+
+    // Dependencia api mapas
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
 }

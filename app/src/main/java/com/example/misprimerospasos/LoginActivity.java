@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +16,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private EditText etEmail;
+    private EditText etPassword;
+    private Button btnLogin;
+    private Button btnRegistro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         // Inicio del SplashScreen
@@ -32,32 +37,40 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        EditText etEmail = findViewById(R.id.etEmail);
-        EditText etPassword = findViewById(R.id.etPassword);
-        Button btnLogin = findViewById(R.id.btnLogin);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnRegistro = findViewById(R.id.btnRegistro);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-
-                // Aquí se puede añadir la lógica de autenticación con el correo y la contraseña
-
-                // Si la autenticación es exitosa, cambiar a HomeActivity
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+                handleLogin();
             }
         });
 
-        Button btnRegistro = findViewById(R.id.btnRegistro);
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
-                startActivity(intent);
+                // Manejar la lógica de registro aquí
+                Toast.makeText(LoginActivity.this, "Funcionalidad de registro no implementada", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void handleLogin() {
+        String username = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        // Validar las credenciales aquí
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
+        } else {
+            // Pasar a MainActivity con el nombre de usuario
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
+            finish();
+        }
     }
 }

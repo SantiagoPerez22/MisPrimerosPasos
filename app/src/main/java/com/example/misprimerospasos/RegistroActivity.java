@@ -24,13 +24,13 @@ public class RegistroActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnRegistrar = findViewById(R.id.btnRegistrar);
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Button btnRegistrar = findViewById(R.id.btnRegistrar);
+//        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }
