@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Configurar el botón para mostrar la ubicación
-        Button showLocationButton = findViewById(R.id.showLocationButton);
+        Button showLocationButton = findViewById(R.id.btnMap);
         showLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    Salida de la app con doble backtap
+    //    Salida de la app con doble backtap
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {

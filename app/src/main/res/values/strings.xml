@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mis Primeros Pasos</string>
+    <string name="title_activity_localizacion">LocalizacionActivity</string>
 </resources>
