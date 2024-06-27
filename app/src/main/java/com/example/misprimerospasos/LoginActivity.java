@@ -53,7 +53,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Manejar la lógica de registro aquí
-                Toast.makeText(LoginActivity.this, "Funcionalidad de registro no implementada", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
+                startActivity(intent);
+
+                //Toast.makeText(LoginActivity.this, "Funcionalidad de registro no implementada", Toast.LENGTH_SHORT).show();
             }
         });
     }
