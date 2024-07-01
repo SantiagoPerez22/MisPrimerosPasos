@@ -57,8 +57,9 @@ class InformeSemanalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(InformeSemanal $informeSemanal)
+    public function show($id)
     {
+        $informeSemanal = InformeSemanal::findOrFail($id);
         return view('informes_semanales.show', compact('informeSemanal'));
     }
 
@@ -68,8 +69,9 @@ class InformeSemanalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(InformeSemanal $informeSemanal)
+    public function edit($id)
     {
+        $informeSemanal = InformeSemanal::findOrFail($id);
         $alumnos = TutorAlumno::all();
         return view('informes_semanales.edit', compact('informeSemanal', 'alumnos'));
     }
@@ -81,7 +83,7 @@ class InformeSemanalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InformeSemanal $informeSemanal)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_alumno' => 'required|integer|exists:tutor_alumno,id',
@@ -90,6 +92,7 @@ class InformeSemanalController extends Controller
             'fecha' => 'required|date'
         ]);
 
+        $informeSemanal = InformeSemanal::findOrFail($id);
         $informeSemanal->update($request->all());
 
         return redirect()->route('informes_semanales.index')
@@ -102,8 +105,9 @@ class InformeSemanalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InformeSemanal $informeSemanal)
+    public function destroy($id)
     {
+        $informeSemanal = InformeSemanal::findOrFail($id);
         $informeSemanal->delete();
 
         return redirect()->route('informes_semanales.index')

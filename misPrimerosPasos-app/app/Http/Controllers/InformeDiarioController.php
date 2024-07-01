@@ -58,8 +58,9 @@ class InformeDiarioController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(InformeDiario $informeDiario)
+    public function show($id)
     {
+        $informeDiario = InformeDiario::find($id);
         return view('informes_diarios.show', compact('informeDiario'));
     }
 
@@ -69,12 +70,13 @@ class InformeDiarioController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-     public function edit(InformeDiario $informeDiario)
-     {
-         $condiciones = Condicion::all();
-         $alumnos = TutorAlumno::all();
-         return view('informes_diarios.edit', compact('informeDiario', 'condiciones', 'alumnos'));
-     }
+    public function edit($id)
+    {
+        $informeDiario = InformeDiario::find($id);
+        $condiciones = Condicion::all();
+        $alumnos = TutorAlumno::all();
+        return view('informes_diarios.edit', compact('informeDiario', 'condiciones', 'alumnos'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -83,7 +85,7 @@ class InformeDiarioController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InformeDiario $informeDiario)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_condicion' => 'required|integer|exists:condicion,id',
@@ -91,6 +93,7 @@ class InformeDiarioController extends Controller
             'fecha' => 'required|date'
         ]);
 
+        $informeDiario = InformeDiario::find($id);
         $informeDiario->update($request->all());
 
         return redirect()->route('informes_diarios.index')
@@ -103,9 +106,12 @@ class InformeDiarioController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InformeDiario $informeDiario)
+    public function destroy($id)
     {
-        $informeDiario->delete();
+        $informeDiario = InformeDiario::find($id);
+        if ($informeDiario) {
+            $informeDiario->delete();
+        }
 
         return redirect()->route('informes_diarios.index')
             ->with('success', 'Informe diario eliminado correctamente.');
