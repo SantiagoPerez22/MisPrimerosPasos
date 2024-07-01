@@ -12,11 +12,15 @@ class Cuenta extends Authenticatable
     protected $table = 'cuentas';
 
     protected $fillable = [
-        'id_persona', 'email', 'password', 'rol_id'
+        'id_persona',
+        'email',
+        'password',
+        'rol_id'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     public function persona()
