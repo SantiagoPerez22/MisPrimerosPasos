@@ -59,8 +59,9 @@ class ObservacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Observacion $observacion)
+    public function show($id)
     {
+        $observacion = Observacion::find($id);
         return view('observaciones.show', compact('observacion'));
     }
 
@@ -70,8 +71,9 @@ class ObservacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Observacion $observacion)
+    public function edit($id)
     {
+        $observacion = Observacion::find($id);
         $alumnos = TutorAlumno::all();
         $clases = Clase::all();
         return view('observaciones.edit', compact('observacion', 'alumnos', 'clases'));
@@ -84,7 +86,7 @@ class ObservacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Observacion $observacion)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_alumno' => 'required|integer|exists:tutor_alumno,id',
@@ -93,6 +95,7 @@ class ObservacionController extends Controller
             'fecha' => 'required|date'
         ]);
 
+        $observacion = Observacion::find($id);
         $observacion->update($request->all());
 
         return redirect()->route('observaciones.index')
@@ -105,9 +108,15 @@ class ObservacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Observacion $observacion)
+    public function destroy($id)
     {
-        $observacion->delete();
+        $observacion = Observacion::find($id);
+        if ($observacion) {
+            $observacion->delete();
+        } else {
+            return redirect()->route('observaciones.index')
+                ->with('error', 'Observación no encontrada.');
+        }
 
         return redirect()->route('observaciones.index')
             ->with('success', 'Observación eliminada correctamente.');

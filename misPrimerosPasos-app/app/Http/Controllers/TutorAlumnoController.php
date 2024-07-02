@@ -74,7 +74,8 @@ class TutorAlumnoController extends Controller
     public function edit(TutorAlumno $tutorAlumno)
     {
         $personas = Persona::all();
-        return view('tutor_alumnos.edit', compact('tutorAlumno', 'personas'));
+        $niveles = Nivel::all();
+        return view('tutor_alumnos.edit', compact('tutorAlumno', 'personas', 'niveles'));
     }
 
     /**
@@ -84,7 +85,7 @@ class TutorAlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TutorAlumno $tutorAlumno)
     {
         $request->validate([
             'id_alumno' => 'required|integer|exists:personas,id',
@@ -94,13 +95,11 @@ class TutorAlumnoController extends Controller
             'fecha_matricula' => 'required|date'
         ]);
 
-        $tutorAlumno = TutorAlumno::find($id);
         $tutorAlumno->update($request->all());
 
         return redirect()->route('tutor_alumnos.index')
             ->with('success', 'Tutor Alumno actualizado correctamente.');
     }
-
 
     /**
      * Remove the specified resource from storage.
