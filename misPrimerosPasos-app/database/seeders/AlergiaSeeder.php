@@ -24,5 +24,21 @@ class AlergiaSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('alergia')->insert([
+            'nombre' => 'Alimenticia',
+            'descripcion' => 'Alergia a la lactosa',
+            'id_alumno' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('alergia')->insert([
+            'nombre' => 'Alimenticia',
+            'descripcion' => 'Alergia al gluten',
+            'id_alumno' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

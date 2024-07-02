@@ -13,7 +13,7 @@ class ClaseSeeder extends Seeder
             'id_ambito' => 1,
             'id_nucleo' => 1,
             'id_nivel' => 1,
-            'id_profesor' => 1,
+            'id_profesor' => 2,
             'id_asistente1' => null,
             'id_asistente2' => null,
             'id_sala' => 1,

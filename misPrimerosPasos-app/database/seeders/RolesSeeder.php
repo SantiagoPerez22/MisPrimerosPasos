@@ -22,5 +22,19 @@ class RolesSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('roles')->insert([
+            'nombre' => 'Asistente',
+            'descripcion' => 'Puede gestionar clases y alumnos de manera limitada',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('roles')->insert([
+            'nombre' => 'Tutor',
+            'descripcion' => 'Solo puede ver los datos de su pupilo',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

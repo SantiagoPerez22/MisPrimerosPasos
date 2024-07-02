@@ -20,6 +20,24 @@ class SalaSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('sala')->insert([
+            'numero' => 103,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('sala')->insert([
+            'numero' => 104,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('sala')->insert([
+            'numero' => 105,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
 
