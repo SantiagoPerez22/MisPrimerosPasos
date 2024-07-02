@@ -16,4 +16,9 @@ class Alergia extends Model
         'descripcion',
         'id_alumno'
     ];
+
+    public function tutorAlumno()
+    {
+        return $this->belongsTo(TutorAlumno::class, 'id_alumno');
+    }
 }

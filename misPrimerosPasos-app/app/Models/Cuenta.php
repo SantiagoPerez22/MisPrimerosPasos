@@ -27,4 +27,10 @@ class Cuenta extends Authenticatable
     {
         return $this->belongsTo(Persona::class, 'id_persona');
     }
+
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class, 'rol_id');
+    }
 }
+

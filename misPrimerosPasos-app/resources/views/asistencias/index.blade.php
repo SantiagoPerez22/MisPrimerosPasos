@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <h1>Asistencias</h1>
-    <a href="{{ route('asistencias.create') }}" class="btn btn-primary mb-2">Agregar Asistencia</a>
-    <table class="table">
+    <a href="{{ route('asistencias.create') }}" class="btn btn-primary">Agregar Asistencia</a>
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>ID</th>
@@ -19,8 +19,8 @@
         @foreach($asistencias as $asistencia)
         <tr>
             <td>{{ $asistencia->id }}</td>
-            <td>{{ $asistencia->id_alumno }}</td>
-            <td>{{ $asistencia->id_clase }}</td>
+            <td>{{ $asistencia->alumno->alumno->nombre1 }} {{ $asistencia->alumno->alumno->apellido1 }}</td>
+            <td>{{ $asistencia->clase->sala->numero }}</td>
             <td>{{ $asistencia->asistencia }}</td>
             <td>{{ $asistencia->fecha }}</td>
             <td>
@@ -38,4 +38,3 @@
     </table>
 </div>
 @endsection
-

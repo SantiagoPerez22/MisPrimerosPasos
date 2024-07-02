@@ -2,22 +2,19 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Clase</h1>
+    <h1>Detalle de la Clase</h1>
     <div class="card">
-        <div class="card-header">
-            Clase #{{ $clase->id }}
-        </div>
         <div class="card-body">
-            <p><strong>Ámbito:</strong> {{ $clase->id_ambito }}</p>
-            <p><strong>Núcleo:</strong> {{ $clase->id_nucleo }}</p>
-            <p><strong>Nivel:</strong> {{ $clase->id_nivel }}</p>
-            <p><strong>Profesor:</strong> {{ $clase->id_profesor }}</p>
-            <p><strong>Asistente 1:</strong> {{ $clase->id_asistente1 }}</p>
-            <p><strong>Asistente 2:</strong> {{ $clase->id_asistente2 }}</p>
-            <p><strong>Sala:</strong> {{ $clase->id_sala }}</p>
-            <p><strong>Fecha:</strong> {{ $clase->fecha }}</p>
-            <p><strong>Objetivo:</strong> {{ $clase->objetivo }}</p>
-            <p><strong>Observaciones:</strong> {{ $clase->observaciones }}</p>
+            <h5 class="card-title">Ámbito: {{ $clase->ambito->nombre }}</h5>
+            <p class="card-text">Núcleo: {{ $clase->nucleo->nombre }}</p>
+            <p class="card-text">Nivel: {{ $clase->nivel->nombre }}</p>
+            <p class="card-text">Profesor: {{ $clase->profesor->persona->nombre1 }} {{ $clase->profesor->persona->apellido1 }}</p>
+            <p class="card-text">Asistente 1: {{ $clase->asistente1 ? $clase->asistente1->persona->nombre1 . ' ' . $clase->asistente1->persona->apellido1 : '-' }}</p>
+            <p class="card-text">Asistente 2: {{ $clase->asistente2 ? $clase->asistente2->persona->nombre1 . ' ' . $clase->asistente2->persona->apellido1 : '-' }}</p>
+            <p class="card-text">Sala: {{ $clase->sala->numero }}</p>
+            <p class="card-text">Fecha: {{ $clase->fecha }}</p>
+            <p class="card-text">Objetivo: {{ $clase->objetivo }}</p>
+            <p class="card-text">Observaciones: {{ $clase->observaciones }}</p>
             <a href="{{ route('clases.index') }}" class="btn btn-primary">Volver a la lista</a>
         </div>
     </div>

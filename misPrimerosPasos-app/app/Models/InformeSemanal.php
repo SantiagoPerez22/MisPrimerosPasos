@@ -17,4 +17,9 @@ class InformeSemanal extends Model
         'peso',
         'fecha'
     ];
+
+    public function alumno()
+    {
+        return $this->belongsTo(TutorAlumno::class, 'id_alumno');
+    }
 }

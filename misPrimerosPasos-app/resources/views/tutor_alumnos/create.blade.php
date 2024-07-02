@@ -24,6 +24,7 @@
         <div class="form-group">
             <label for="id_tutor2">Tutor 2</label>
             <select name="id_tutor2" class="form-control">
+                <option value="">N/A</option>
                 @foreach($personas as $persona)
                 <option value="{{ $persona->id }}">{{ $persona->nombre1 }} {{ $persona->apellido1 }}</option>
                 @endforeach

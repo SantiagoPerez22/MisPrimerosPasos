@@ -2,17 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Alergia</h1>
+    <h1>Detalle de la Alergia</h1>
     <div class="card">
         <div class="card-header">
-            Alergia #{{ $alergia->id }}
+            Alergia: {{ $alergia->nombre }}
         </div>
         <div class="card-body">
-            <p><strong>Nombre:</strong> {{ $alergia->nombre }}</p>
             <p><strong>Descripción:</strong> {{ $alergia->descripcion }}</p>
-            <p><strong>Alumno:</strong> {{ $alergia->id_alumno }}</p>
-            <a href="{{ route('alergias.index') }}" class="btn btn-primary">Volver a la lista</a>
+            <p><strong>Alumno:</strong> {{ $alergia->tutorAlumno ? $alergia->tutorAlumno->alumno->nombre1 . ' ' . $alergia->tutorAlumno->alumno->apellido1 : 'No asignado' }}</p>
         </div>
     </div>
+    <a href="{{ route('alergias.index') }}" class="btn btn-primary mt-3">Volver</a>
 </div>
 @endsection

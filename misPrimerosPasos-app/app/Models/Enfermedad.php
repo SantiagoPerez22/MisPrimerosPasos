@@ -16,4 +16,9 @@ class Enfermedad extends Model
         'descripcion',
         'id_alumno'
     ];
+
+    public function alumno()
+    {
+        return $this->belongsTo(TutorAlumno::class, 'id_alumno');
+    }
 }

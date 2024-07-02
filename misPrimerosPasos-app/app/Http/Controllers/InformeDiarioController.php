@@ -16,7 +16,7 @@ class InformeDiarioController extends Controller
      */
     public function index()
     {
-        $informesDiarios = InformeDiario::all();
+        $informesDiarios = InformeDiario::with(['condicion', 'alumno.alumno'])->get();
         return view('informes_diarios.index', compact('informesDiarios'));
     }
 
@@ -28,7 +28,7 @@ class InformeDiarioController extends Controller
     public function create()
     {
         $condiciones = Condicion::all();
-        $alumnos = TutorAlumno::all();
+        $alumnos = TutorAlumno::with('alumno')->get();
         return view('informes_diarios.create', compact('condiciones', 'alumnos'));
     }
 
@@ -41,15 +41,15 @@ class InformeDiarioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_condicion' => 'required|integer|exists:condicion,id',
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id',
+            'id_condicion' => 'required|integer',
+            'id_alumno' => 'required|integer',
             'fecha' => 'required|date'
         ]);
 
         InformeDiario::create($request->all());
 
         return redirect()->route('informes_diarios.index')
-            ->with('success', 'Informe diario creado correctamente.');
+            ->with('success', 'Informe Diario creado correctamente.');
     }
 
     /**
@@ -60,7 +60,7 @@ class InformeDiarioController extends Controller
      */
     public function show($id)
     {
-        $informeDiario = InformeDiario::find($id);
+        $informeDiario = InformeDiario::with(['condicion', 'alumno.alumno'])->findOrFail($id);
         return view('informes_diarios.show', compact('informeDiario'));
     }
 
@@ -72,9 +72,9 @@ class InformeDiarioController extends Controller
      */
     public function edit($id)
     {
-        $informeDiario = InformeDiario::find($id);
+        $informeDiario = InformeDiario::with(['condicion', 'alumno.alumno'])->findOrFail($id);
         $condiciones = Condicion::all();
-        $alumnos = TutorAlumno::all();
+        $alumnos = TutorAlumno::with('alumno')->get();
         return view('informes_diarios.edit', compact('informeDiario', 'condiciones', 'alumnos'));
     }
 
@@ -88,16 +88,16 @@ class InformeDiarioController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_condicion' => 'required|integer|exists:condicion,id',
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id',
+            'id_condicion' => 'required|integer',
+            'id_alumno' => 'required|integer',
             'fecha' => 'required|date'
         ]);
 
-        $informeDiario = InformeDiario::find($id);
+        $informeDiario = InformeDiario::findOrFail($id);
         $informeDiario->update($request->all());
 
         return redirect()->route('informes_diarios.index')
-            ->with('success', 'Informe diario actualizado correctamente.');
+            ->with('success', 'Informe Diario actualizado correctamente.');
     }
 
     /**
@@ -108,12 +108,10 @@ class InformeDiarioController extends Controller
      */
     public function destroy($id)
     {
-        $informeDiario = InformeDiario::find($id);
-        if ($informeDiario) {
-            $informeDiario->delete();
-        }
+        $informeDiario = InformeDiario::findOrFail($id);
+        $informeDiario->delete();
 
         return redirect()->route('informes_diarios.index')
-            ->with('success', 'Informe diario eliminado correctamente.');
+            ->with('success', 'Informe Diario eliminado correctamente.');
     }
 }

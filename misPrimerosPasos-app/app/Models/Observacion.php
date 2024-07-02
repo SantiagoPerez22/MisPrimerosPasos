@@ -17,4 +17,14 @@ class Observacion extends Model
         'observaciones',
         'fecha'
     ];
+
+    public function alumno()
+    {
+        return $this->belongsTo(TutorAlumno::class, 'id_alumno');
+    }
+
+    public function clase()
+    {
+        return $this->belongsTo(Clase::class, 'id_clase');
+    }
 }

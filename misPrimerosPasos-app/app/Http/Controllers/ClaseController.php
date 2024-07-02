@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clase;
+use App\Models\Ambito;
+use App\Models\Nucleo;
+use App\Models\Nivel;
+use App\Models\Cuenta;
+use App\Models\Sala;
 use Illuminate\Http\Request;
 
 class ClaseController extends Controller
@@ -14,7 +19,7 @@ class ClaseController extends Controller
      */
     public function index()
     {
-        $clases = Clase::all();
+        $clases = Clase::with(['ambito', 'nucleo', 'nivel', 'profesor', 'asistente1', 'asistente2', 'sala'])->get();
         return view('clases.index', compact('clases'));
     }
 
@@ -25,7 +30,12 @@ class ClaseController extends Controller
      */
     public function create()
     {
-        return view('clases.create');
+        $ambitos = Ambito::all();
+        $nucleos = Nucleo::all();
+        $niveles = Nivel::all();
+        $cuentas = Cuenta::all();
+        $salas = Sala::all();
+        return view('clases.create', compact('ambitos', 'nucleos', 'niveles', 'cuentas', 'salas'));
     }
 
     /**
@@ -61,8 +71,9 @@ class ClaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Clase $clase)
+    public function show($id)
     {
+        $clase = Clase::with(['ambito', 'nucleo', 'nivel', 'profesor', 'asistente1', 'asistente2', 'sala'])->findOrFail($id);
         return view('clases.show', compact('clase'));
     }
 
@@ -72,9 +83,15 @@ class ClaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clase $clase)
+    public function edit($id)
     {
-        return view('clases.edit', compact('clase'));
+        $clase = Clase::with(['ambito', 'nucleo', 'nivel', 'profesor', 'asistente1', 'asistente2', 'sala'])->findOrFail($id);
+        $ambitos = Ambito::all();
+        $nucleos = Nucleo::all();
+        $niveles = Nivel::all();
+        $cuentas = Cuenta::all();
+        $salas = Sala::all();
+        return view('clases.edit', compact('clase', 'ambitos', 'nucleos', 'niveles', 'cuentas', 'salas'));
     }
 
     /**
@@ -84,7 +101,7 @@ class ClaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clase $clase)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_ambito' => 'required|integer',
@@ -99,6 +116,7 @@ class ClaseController extends Controller
             'observaciones' => 'nullable|string'
         ]);
 
+        $clase = Clase::findOrFail($id);
         $clase->update($request->all());
 
         return redirect()->route('clases.index')
@@ -111,8 +129,9 @@ class ClaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clase $clase)
+    public function destroy($id)
     {
+        $clase = Clase::findOrFail($id);
         $clase->delete();
 
         return redirect()->route('clases.index')

@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <h1>Observaciones</h1>
-    <a href="{{ route('observaciones.create') }}" class="btn btn-primary mb-2">Agregar Observación</a>
-    <table class="table">
+    <a href="{{ route('observaciones.create') }}" class="btn btn-primary">Agregar Observación</a>
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>ID</th>
@@ -19,8 +19,8 @@
         @foreach($observaciones as $observacion)
         <tr>
             <td>{{ $observacion->id }}</td>
-            <td>{{ $observacion->id_alumno }}</td>
-            <td>{{ $observacion->id_clase }}</td>
+            <td>{{ $observacion->alumno->alumno->nombre1 }} {{ $observacion->alumno->alumno->apellido1 }}</td>
+            <td>{{ $observacion->clase->sala->numero }}</td>
             <td>{{ $observacion->observaciones }}</td>
             <td>{{ $observacion->fecha }}</td>
             <td>

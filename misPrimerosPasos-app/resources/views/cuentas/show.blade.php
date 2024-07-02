@@ -2,15 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Cuenta</h1>
+    <h1>Detalle de la Cuenta</h1>
     <div class="card">
-        <div class="card-header">
-            Cuenta #{{ $cuenta->id }}
-        </div>
         <div class="card-body">
-            <p><strong>Persona:</strong> {{ $cuenta->id_persona }}</p>
-            <p><strong>Email:</strong> {{ $cuenta->email }}</p>
-            <p><strong>Rol:</strong> {{ $cuenta->rol_id }}</p>
+            <h5 class="card-title">Persona: {{ $cuenta->persona->nombre1 }} {{ $cuenta->persona->apellido1 }}</h5>
+            <p class="card-text">Email: {{ $cuenta->email }}</p>
+            <p class="card-text">Rol: {{ $cuenta->rol->nombre }}</p>
             <a href="{{ route('cuentas.index') }}" class="btn btn-primary">Volver a la lista</a>
         </div>
     </div>

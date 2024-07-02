@@ -9,7 +9,7 @@
             <label for="id_alumno">Alumno</label>
             <select name="id_alumno" class="form-control" required>
                 @foreach($alumnos as $alumno)
-                <option value="{{ $alumno->id }}">{{ $alumno->id }}</option>
+                <option value="{{ $alumno->id }}">{{ $alumno->alumno->nombre1 }} {{ $alumno->alumno->apellido1 }}</option>
                 @endforeach
             </select>
         </div>
@@ -17,14 +17,14 @@
             <label for="id_clase">Clase</label>
             <select name="id_clase" class="form-control" required>
                 @foreach($clases as $clase)
-                <option value="{{ $clase->id }}">{{ $clase->id }}</option>
+                <option value="{{ $clase->id }}">{{ $clase->sala->numero }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="asistencia">Asistencia</label>
             <select name="asistencia" class="form-control" required>
-                <option value="si">Si</option>
+                <option value="si">Sí</option>
                 <option value="no">No</option>
             </select>
         </div>

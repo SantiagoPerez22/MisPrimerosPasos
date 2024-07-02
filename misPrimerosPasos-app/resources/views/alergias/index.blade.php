@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <h1>Alergias</h1>
-    <a href="{{ route('alergias.create') }}" class="btn btn-primary mb-2">Agregar Alergia</a>
-    <table class="table">
+    <a href="{{ route('alergias.create') }}" class="btn btn-primary">Agregar Alergia</a>
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>ID</th>
@@ -20,7 +20,7 @@
             <td>{{ $alergia->id }}</td>
             <td>{{ $alergia->nombre }}</td>
             <td>{{ $alergia->descripcion }}</td>
-            <td>{{ $alergia->id_alumno }}</td>
+            <td>{{ $alergia->tutorAlumno ? $alergia->tutorAlumno->alumno->nombre1 . ' ' . $alergia->tutorAlumno->alumno->apellido1 : 'No asignado' }}</td>
             <td>
                 <a href="{{ route('alergias.show', $alergia->id) }}" class="btn btn-info">Ver</a>
                 <a href="{{ route('alergias.edit', $alergia->id) }}" class="btn btn-warning">Editar</a>

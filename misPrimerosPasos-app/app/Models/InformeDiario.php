@@ -16,4 +16,14 @@ class InformeDiario extends Model
         'id_alumno',
         'fecha'
     ];
+
+    public function condicion()
+    {
+        return $this->belongsTo(Condicion::class, 'id_condicion');
+    }
+
+    public function alumno()
+    {
+        return $this->belongsTo(TutorAlumno::class, 'id_alumno');
+    }
 }

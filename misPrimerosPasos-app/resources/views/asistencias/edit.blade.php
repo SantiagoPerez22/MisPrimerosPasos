@@ -10,7 +10,7 @@
             <label for="id_alumno">Alumno</label>
             <select name="id_alumno" class="form-control" required>
                 @foreach($alumnos as $alumno)
-                <option value="{{ $alumno->id }}" {{ $alumno->id == $asistencia->id_alumno ? 'selected' : '' }}>{{ $alumno->id }}</option>
+                <option value="{{ $alumno->id }}" {{ $asistencia->id_alumno == $alumno->id ? 'selected' : '' }}>{{ $alumno->alumno->nombre1 }} {{ $alumno->alumno->apellido1 }}</option>
                 @endforeach
             </select>
         </div>
@@ -18,14 +18,14 @@
             <label for="id_clase">Clase</label>
             <select name="id_clase" class="form-control" required>
                 @foreach($clases as $clase)
-                <option value="{{ $clase->id }}" {{ $clase->id == $asistencia->id_clase ? 'selected' : '' }}>{{ $clase->id }}</option>
+                <option value="{{ $clase->id }}" {{ $asistencia->id_clase == $clase->id ? 'selected' : '' }}>{{ $clase->sala->numero }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="asistencia">Asistencia</label>
             <select name="asistencia" class="form-control" required>
-                <option value="si" {{ $asistencia->asistencia == 'si' ? 'selected' : '' }}>Si</option>
+                <option value="si" {{ $asistencia->asistencia == 'si' ? 'selected' : '' }}>Sí</option>
                 <option value="no" {{ $asistencia->asistencia == 'no' ? 'selected' : '' }}>No</option>
             </select>
         </div>
@@ -37,4 +37,3 @@
     </form>
 </div>
 @endsection
-

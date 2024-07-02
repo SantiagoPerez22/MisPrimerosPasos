@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h1>Tutor Alumnos</h1>
-    <a href="{{ route('tutor_alumnos.create') }}" class="btn btn-primary mb-2">Agregar Tutor Alumno</a>
-    <table class="table">
+    <h1>Tutor Alumno</h1>
+    <a href="{{ route('tutor_alumnos.create') }}" class="btn btn-primary">Agregar Tutor Alumno</a>
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>ID</th>
@@ -20,10 +20,10 @@
         @foreach($tutorAlumnos as $tutorAlumno)
         <tr>
             <td>{{ $tutorAlumno->id }}</td>
-            <td>{{ $tutorAlumno->id_alumno }}</td>
-            <td>{{ $tutorAlumno->id_tutor1 }}</td>
-            <td>{{ $tutorAlumno->id_tutor2 }}</td>
-            <td>{{ $tutorAlumno->id_nivel }}</td>
+            <td>{{ $tutorAlumno->alumno->nombre1 }} {{ $tutorAlumno->alumno->apellido1 }}</td>
+            <td>{{ $tutorAlumno->tutor1->nombre1 }} {{ $tutorAlumno->tutor1->apellido1 }}</td>
+            <td>{{ $tutorAlumno->tutor2->nombre1 ?? 'N/A' }} {{ $tutorAlumno->tutor2->apellido1 ?? '' }}</td>
+            <td>{{ $tutorAlumno->nivel->nombre }}</td>
             <td>{{ $tutorAlumno->fecha_matricula }}</td>
             <td>
                 <a href="{{ route('tutor_alumnos.show', $tutorAlumno->id) }}" class="btn btn-info">Ver</a>

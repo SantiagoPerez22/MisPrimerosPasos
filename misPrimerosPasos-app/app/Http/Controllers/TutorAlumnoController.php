@@ -16,7 +16,7 @@ class TutorAlumnoController extends Controller
      */
     public function index()
     {
-        $tutorAlumnos = TutorAlumno::all();
+        $tutorAlumnos = TutorAlumno::with('alumno', 'tutor1', 'tutor2', 'nivel')->get();
         return view('tutor_alumnos.index', compact('tutorAlumnos'));
     }
 

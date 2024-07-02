@@ -4,35 +4,65 @@
 <div class="container">
     <h1>Editar Clase</h1>
     <form action="{{ route('clases.update', $clase->id) }}" method="POST">
-    @csrf
+        @csrf
         @method('PUT')
         <div class="form-group">
             <label for="id_ambito">Ámbito</label>
-            <input type="number" name="id_ambito" class="form-control" value="{{ $clase->id_ambito }}" required>
+            <select name="id_ambito" class="form-control" required>
+                @foreach($ambitos as $ambito)
+                <option value="{{ $ambito->id }}" {{ $clase->id_ambito == $ambito->id ? 'selected' : '' }}>{{ $ambito->nombre }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="id_nucleo">Núcleo</label>
-            <input type="number" name="id_nucleo" class="form-control" value="{{ $clase->id_nucleo }}" required>
+            <select name="id_nucleo" class="form-control" required>
+                @foreach($nucleos as $nucleo)
+                <option value="{{ $nucleo->id }}" {{ $clase->id_nucleo == $nucleo->id ? 'selected' : '' }}>{{ $nucleo->nombre }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="id_nivel">Nivel</label>
-            <input type="number" name="id_nivel" class="form-control" value="{{ $clase->id_nivel }}" required>
+            <select name="id_nivel" class="form-control" required>
+                @foreach($niveles as $nivel)
+                <option value="{{ $nivel->id }}" {{ $clase->id_nivel == $nivel->id ? 'selected' : '' }}>{{ $nivel->nombre }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="id_profesor">Profesor</label>
-            <input type="number" name="id_profesor" class="form-control" value="{{ $clase->id_profesor }}" required>
+            <select name="id_profesor" class="form-control" required>
+                @foreach($cuentas as $cuenta)
+                <option value="{{ $cuenta->id }}" {{ $clase->id_profesor == $cuenta->id ? 'selected' : '' }}>{{ $cuenta->persona->nombre1 }} {{ $cuenta->persona->apellido1 }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="id_asistente1">Asistente 1</label>
-            <input type="number" name="id_asistente1" class="form-control" value="{{ $clase->id_asistente1 }}">
+            <select name="id_asistente1" class="form-control">
+                <option value="">Ninguno</option>
+                @foreach($cuentas as $cuenta)
+                <option value="{{ $cuenta->id }}" {{ $clase->id_asistente1 == $cuenta->id ? 'selected' : '' }}>{{ $cuenta->persona->nombre1 }} {{ $cuenta->persona->apellido1 }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="id_asistente2">Asistente 2</label>
-            <input type="number" name="id_asistente2" class="form-control" value="{{ $clase->id_asistente2 }}">
+            <select name="id_asistente2" class="form-control">
+                <option value="">Ninguno</option>
+                @foreach($cuentas as $cuenta)
+                <option value="{{ $cuenta->id }}" {{ $clase->id_asistente2 == $cuenta->id ? 'selected' : '' }}>{{ $cuenta->persona->nombre1 }} {{ $cuenta->persona->apellido1 }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="id_sala">Sala</label>
-            <input type="number" name="id_sala" class="form-control" value="{{ $clase->id_sala }}" required>
+            <select name="id_sala" class="form-control" required>
+                @foreach($salas as $sala)
+                <option value="{{ $sala->id }}" {{ $clase->id_sala == $sala->id ? 'selected' : '' }}>{{ $sala->numero }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="fecha">Fecha</label>

@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <h1>Informes Diarios</h1>
-    <a href="{{ route('informes_diarios.create') }}" class="btn btn-primary mb-2">Agregar Informe Diario</a>
-    <table class="table">
+    <a href="{{ route('informes_diarios.create') }}" class="btn btn-primary">Agregar Informe Diario</a>
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>ID</th>
@@ -18,8 +18,8 @@
         @foreach($informesDiarios as $informeDiario)
         <tr>
             <td>{{ $informeDiario->id }}</td>
-            <td>{{ $informeDiario->id_condicion }}</td>
-            <td>{{ $informeDiario->id_alumno }}</td>
+            <td>{{ $informeDiario->condicion->nombre }}</td>
+            <td>{{ $informeDiario->alumno->alumno->nombre1 }} {{ $informeDiario->alumno->alumno->apellido1 }}</td>
             <td>{{ $informeDiario->fecha }}</td>
             <td>
                 <a href="{{ route('informes_diarios.show', $informeDiario->id) }}" class="btn btn-info">Ver</a>

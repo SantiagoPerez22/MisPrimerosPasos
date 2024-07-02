@@ -10,7 +10,7 @@
             <label for="id_persona">Persona</label>
             <select name="id_persona" class="form-control" required>
                 @foreach($personas as $persona)
-                <option value="{{ $persona->id }}" {{ $persona->id == $cuenta->id_persona ? 'selected' : '' }}>{{ $persona->nombre1 }} {{ $persona->apellido1 }}</option>
+                <option value="{{ $persona->id }}" {{ $cuenta->id_persona == $persona->id ? 'selected' : '' }}>{{ $persona->nombre1 }} {{ $persona->apellido1 }}</option>
                 @endforeach
             </select>
         </div>
@@ -19,14 +19,15 @@
             <input type="email" name="email" class="form-control" value="{{ $cuenta->email }}" required>
         </div>
         <div class="form-group">
-            <label for="password">Contraseña (dejar en blanco para mantener la misma)</label>
+            <label for="password">Contraseña</label>
             <input type="password" name="password" class="form-control">
+            <small class="form-text text-muted">Dejar en blanco si no deseas cambiarla.</small>
         </div>
         <div class="form-group">
             <label for="rol_id">Rol</label>
             <select name="rol_id" class="form-control" required>
                 @foreach($roles as $rol)
-                <option value="{{ $rol->id }}" {{ $rol->id == $cuenta->rol_id ? 'selected' : '' }}>{{ $rol->nombre }}</option>
+                <option value="{{ $rol->id }}" {{ $cuenta->rol_id == $rol->id ? 'selected' : '' }}>{{ $rol->nombre }}</option>
                 @endforeach
             </select>
         </div>
@@ -34,4 +35,3 @@
     </form>
 </div>
 @endsection
-

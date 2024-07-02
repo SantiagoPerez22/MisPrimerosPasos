@@ -15,7 +15,7 @@ class InformeSemanalController extends Controller
      */
     public function index()
     {
-        $informesSemanales = InformeSemanal::all();
+        $informesSemanales = InformeSemanal::with(['alumno.alumno'])->get();
         return view('informes_semanales.index', compact('informesSemanales'));
     }
 
@@ -26,7 +26,7 @@ class InformeSemanalController extends Controller
      */
     public function create()
     {
-        $alumnos = TutorAlumno::all();
+        $alumnos = TutorAlumno::with('alumno')->get();
         return view('informes_semanales.create', compact('alumnos'));
     }
 
@@ -59,7 +59,7 @@ class InformeSemanalController extends Controller
      */
     public function show($id)
     {
-        $informeSemanal = InformeSemanal::findOrFail($id);
+        $informeSemanal = InformeSemanal::with(['alumno.alumno'])->findOrFail($id);
         return view('informes_semanales.show', compact('informeSemanal'));
     }
 
@@ -71,8 +71,8 @@ class InformeSemanalController extends Controller
      */
     public function edit($id)
     {
-        $informeSemanal = InformeSemanal::findOrFail($id);
-        $alumnos = TutorAlumno::all();
+        $informeSemanal = InformeSemanal::with(['alumno.alumno'])->findOrFail($id);
+        $alumnos = TutorAlumno::with('alumno')->get();
         return view('informes_semanales.edit', compact('informeSemanal', 'alumnos'));
     }
 
@@ -86,7 +86,7 @@ class InformeSemanalController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id',
+            'id_alumno' => 'required|integer',
             'altura' => 'required|numeric',
             'peso' => 'required|numeric',
             'fecha' => 'required|date'
@@ -96,7 +96,7 @@ class InformeSemanalController extends Controller
         $informeSemanal->update($request->all());
 
         return redirect()->route('informes_semanales.index')
-            ->with('success', 'Informe semanal actualizado correctamente.');
+            ->with('success', 'Informe Semanal actualizado correctamente.');
     }
 
     /**
@@ -111,6 +111,6 @@ class InformeSemanalController extends Controller
         $informeSemanal->delete();
 
         return redirect()->route('informes_semanales.index')
-            ->with('success', 'Informe semanal eliminado correctamente.');
+            ->with('success', 'Informe Semanal eliminado correctamente.');
     }
 }

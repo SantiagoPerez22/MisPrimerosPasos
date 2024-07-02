@@ -10,7 +10,7 @@
             <label for="id_condicion">Condición</label>
             <select name="id_condicion" class="form-control" required>
                 @foreach($condiciones as $condicion)
-                <option value="{{ $condicion->id }}" {{ $condicion->id == $informeDiario->id_condicion ? 'selected' : '' }}>{{ $condicion->nombre }}</option>
+                <option value="{{ $condicion->id }}" {{ $informeDiario->id_condicion == $condicion->id ? 'selected' : '' }}>{{ $condicion->nombre }}</option>
                 @endforeach
             </select>
         </div>
@@ -18,7 +18,7 @@
             <label for="id_alumno">Alumno</label>
             <select name="id_alumno" class="form-control" required>
                 @foreach($alumnos as $alumno)
-                <option value="{{ $alumno->id }}" {{ $alumno->id == $informeDiario->id_alumno ? 'selected' : '' }}>{{ $alumno->id }}</option>
+                <option value="{{ $alumno->id }}" {{ $informeDiario->id_alumno == $alumno->id ? 'selected' : '' }}>{{ $alumno->alumno->nombre1 }} {{ $alumno->alumno->apellido1 }}</option>
                 @endforeach
             </select>
         </div>

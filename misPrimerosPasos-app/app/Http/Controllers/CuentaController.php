@@ -17,7 +17,7 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        $cuentas = Cuenta::all();
+        $cuentas = Cuenta::with(['persona', 'rol'])->get();
         return view('cuentas.index', compact('cuentas'));
     }
 
@@ -43,7 +43,7 @@ class CuentaController extends Controller
     {
         $request->validate([
             'id_persona' => 'required|integer',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:cuentas',
             'password' => 'required|string|min:8',
             'rol_id' => 'required|integer'
         ]);
@@ -65,8 +65,9 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuenta $cuenta)
+    public function show($id)
     {
+        $cuenta = Cuenta::with(['persona', 'rol'])->findOrFail($id);
         return view('cuentas.show', compact('cuenta'));
     }
 
@@ -76,8 +77,9 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cuenta $cuenta)
+    public function edit($id)
     {
+        $cuenta = Cuenta::with(['persona', 'rol'])->findOrFail($id);
         $personas = Persona::all();
         $roles = Rol::all();
         return view('cuentas.edit', compact('cuenta', 'personas', 'roles'));
@@ -90,15 +92,16 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuenta $cuenta)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_persona' => 'required|integer',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:cuentas,email,'.$id,
             'password' => 'nullable|string|min:8',
             'rol_id' => 'required|integer'
         ]);
 
+        $cuenta = Cuenta::findOrFail($id);
         $cuenta->id_persona = $request->id_persona;
         $cuenta->email = $request->email;
         if ($request->password) {
@@ -117,8 +120,9 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuenta $cuenta)
+    public function destroy($id)
     {
+        $cuenta = Cuenta::findOrFail($id);
         $cuenta->delete();
 
         return redirect()->route('cuentas.index')

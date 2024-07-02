@@ -18,4 +18,39 @@ class TutorAlumno extends Model
         'id_nivel',
         'fecha_matricula'
     ];
+
+    public function alumno()
+    {
+        return $this->belongsTo(Persona::class, 'id_alumno');
+    }
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class, 'id_alumno');
+    }
+
+    public function tutor1()
+    {
+        return $this->belongsTo(Persona::class, 'id_tutor1');
+    }
+
+    public function tutor2()
+    {
+        return $this->belongsTo(Persona::class, 'id_tutor2');
+    }
+
+    public function nivel()
+    {
+        return $this->belongsTo(Nivel::class, 'id_nivel');
+    }
+
+    public function alergias()
+    {
+        return $this->hasMany(Alergia::class, 'id_alumno');
+    }
+
+    public function enfermedades()
+    {
+        return $this->hasMany(Enfermedad::class, 'id_alumno');
+    }
 }

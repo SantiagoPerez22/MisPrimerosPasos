@@ -16,7 +16,7 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        $asistencias = Asistencia::all();
+        $asistencias = Asistencia::with(['alumno.alumno', 'clase.sala'])->get();
         return view('asistencias.index', compact('asistencias'));
     }
 
@@ -27,7 +27,7 @@ class AsistenciaController extends Controller
      */
     public function create()
     {
-        $alumnos = TutorAlumno::all();
+        $alumnos = TutorAlumno::with('alumno')->get();
         $clases = Clase::all();
         return view('asistencias.create', compact('alumnos', 'clases'));
     }
@@ -41,8 +41,8 @@ class AsistenciaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id',
-            'id_clase' => 'required|integer|exists:clase,id',
+            'id_alumno' => 'required|integer',
+            'id_clase' => 'required|integer',
             'asistencia' => 'required|in:si,no',
             'fecha' => 'required|date'
         ]);
@@ -59,8 +59,9 @@ class AsistenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Asistencia $asistencia)
+    public function show($id)
     {
+        $asistencia = Asistencia::with(['alumno.alumno', 'clase.sala'])->findOrFail($id);
         return view('asistencias.show', compact('asistencia'));
     }
 
@@ -70,9 +71,10 @@ class AsistenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asistencia $asistencia)
+    public function edit($id)
     {
-        $alumnos = TutorAlumno::all();
+        $asistencia = Asistencia::with(['alumno.alumno', 'clase.sala'])->findOrFail($id);
+        $alumnos = TutorAlumno::with('alumno')->get();
         $clases = Clase::all();
         return view('asistencias.edit', compact('asistencia', 'alumnos', 'clases'));
     }
@@ -84,15 +86,16 @@ class AsistenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asistencia $asistencia)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id',
-            'id_clase' => 'required|integer|exists:clase,id',
+            'id_alumno' => 'required|integer',
+            'id_clase' => 'required|integer',
             'asistencia' => 'required|in:si,no',
             'fecha' => 'required|date'
         ]);
 
+        $asistencia = Asistencia::findOrFail($id);
         $asistencia->update($request->all());
 
         return redirect()->route('asistencias.index')
@@ -105,8 +108,9 @@ class AsistenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asistencia $asistencia)
+    public function destroy($id)
     {
+        $asistencia = Asistencia::findOrFail($id);
         $asistencia->delete();
 
         return redirect()->route('asistencias.index')

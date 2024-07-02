@@ -16,7 +16,7 @@ class ObservacionController extends Controller
      */
     public function index()
     {
-        $observaciones = Observacion::all();
+        $observaciones = Observacion::with(['alumno.alumno', 'clase.sala'])->get();
         return view('observaciones.index', compact('observaciones'));
     }
 
@@ -27,7 +27,7 @@ class ObservacionController extends Controller
      */
     public function create()
     {
-        $alumnos = TutorAlumno::all();
+        $alumnos = TutorAlumno::with('alumno')->get();
         $clases = Clase::all();
         return view('observaciones.create', compact('alumnos', 'clases'));
     }
@@ -41,8 +41,8 @@ class ObservacionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id',
-            'id_clase' => 'required|integer|exists:clase,id',
+            'id_alumno' => 'required|integer',
+            'id_clase' => 'required|integer',
             'observaciones' => 'required|string',
             'fecha' => 'required|date'
         ]);
@@ -61,7 +61,7 @@ class ObservacionController extends Controller
      */
     public function show($id)
     {
-        $observacion = Observacion::find($id);
+        $observacion = Observacion::with(['alumno.alumno', 'clase.sala'])->findOrFail($id);
         return view('observaciones.show', compact('observacion'));
     }
 
@@ -73,8 +73,8 @@ class ObservacionController extends Controller
      */
     public function edit($id)
     {
-        $observacion = Observacion::find($id);
-        $alumnos = TutorAlumno::all();
+        $observacion = Observacion::with(['alumno.alumno', 'clase.sala'])->findOrFail($id);
+        $alumnos = TutorAlumno::with('alumno')->get();
         $clases = Clase::all();
         return view('observaciones.edit', compact('observacion', 'alumnos', 'clases'));
     }
@@ -89,13 +89,13 @@ class ObservacionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id',
-            'id_clase' => 'required|integer|exists:clase,id',
+            'id_alumno' => 'required|integer',
+            'id_clase' => 'required|integer',
             'observaciones' => 'required|string',
             'fecha' => 'required|date'
         ]);
 
-        $observacion = Observacion::find($id);
+        $observacion = Observacion::findOrFail($id);
         $observacion->update($request->all());
 
         return redirect()->route('observaciones.index')
@@ -110,13 +110,8 @@ class ObservacionController extends Controller
      */
     public function destroy($id)
     {
-        $observacion = Observacion::find($id);
-        if ($observacion) {
-            $observacion->delete();
-        } else {
-            return redirect()->route('observaciones.index')
-                ->with('error', 'Observación no encontrada.');
-        }
+        $observacion = Observacion::findOrFail($id);
+        $observacion->delete();
 
         return redirect()->route('observaciones.index')
             ->with('success', 'Observación eliminada correctamente.');

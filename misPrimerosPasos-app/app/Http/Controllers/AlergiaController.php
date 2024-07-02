@@ -15,7 +15,7 @@ class AlergiaController extends Controller
      */
     public function index()
     {
-        $alergias = Alergia::all();
+        $alergias = Alergia::with('tutorAlumno.alumno')->get();
         return view('alergias.index', compact('alergias'));
     }
 
@@ -26,8 +26,8 @@ class AlergiaController extends Controller
      */
     public function create()
     {
-        $alumnos = TutorAlumno::all();
-        return view('alergias.create', compact('alumnos'));
+        $tutoresAlumnos = TutorAlumno::with('alumno')->get();
+        return view('alergias.create', compact('tutoresAlumnos'));
     }
 
     /**
@@ -39,7 +39,7 @@ class AlergiaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required',
             'descripcion' => 'nullable|string',
             'id_alumno' => 'required|integer|exists:tutor_alumno,id'
         ]);
@@ -58,6 +58,7 @@ class AlergiaController extends Controller
      */
     public function show(Alergia $alergia)
     {
+        $alergia->load('tutorAlumno.alumno');
         return view('alergias.show', compact('alergia'));
     }
 
@@ -69,8 +70,8 @@ class AlergiaController extends Controller
      */
     public function edit(Alergia $alergia)
     {
-        $alumnos = TutorAlumno::all();
-        return view('alergias.edit', compact('alergia', 'alumnos'));
+        $tutoresAlumnos = TutorAlumno::with('alumno')->get();
+        return view('alergias.edit', compact('alergia', 'tutoresAlumnos'));
     }
 
     /**
@@ -83,7 +84,7 @@ class AlergiaController extends Controller
     public function update(Request $request, Alergia $alergia)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required',
             'descripcion' => 'nullable|string',
             'id_alumno' => 'required|integer|exists:tutor_alumno,id'
         ]);

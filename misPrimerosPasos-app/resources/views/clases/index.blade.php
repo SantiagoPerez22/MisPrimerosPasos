@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <h1>Clases</h1>
-    <a href="{{ route('clases.create') }}" class="btn btn-primary mb-2">Agregar Clase</a>
-    <table class="table">
+    <a href="{{ route('clases.create') }}" class="btn btn-primary">Agregar Clase</a>
+    <table class="table mt-3">
         <thead>
         <tr>
             <th>ID</th>
@@ -23,13 +23,13 @@
         @foreach($clases as $clase)
         <tr>
             <td>{{ $clase->id }}</td>
-            <td>{{ $clase->id_ambito }}</td>
-            <td>{{ $clase->id_nucleo }}</td>
-            <td>{{ $clase->id_nivel }}</td>
-            <td>{{ $clase->id_profesor }}</td>
-            <td>{{ $clase->id_asistente1 }}</td>
-            <td>{{ $clase->id_asistente2 }}</td>
-            <td>{{ $clase->id_sala }}</td>
+            <td>{{ $clase->ambito->nombre }}</td>
+            <td>{{ $clase->nucleo->nombre }}</td>
+            <td>{{ $clase->nivel->nombre }}</td>
+            <td>{{ $clase->profesor->persona->nombre1 }} {{ $clase->profesor->persona->apellido1 }}</td>
+            <td>{{ $clase->asistente1 ? $clase->asistente1->persona->nombre1 . ' ' . $clase->asistente1->persona->apellido1 : '-' }}</td>
+            <td>{{ $clase->asistente2 ? $clase->asistente2->persona->nombre1 . ' ' . $clase->asistente2->persona->apellido1 : '-' }}</td>
+            <td>{{ $clase->sala->numero }}</td>
             <td>{{ $clase->fecha }}</td>
             <td>
                 <a href="{{ route('clases.show', $clase->id) }}" class="btn btn-info">Ver</a>

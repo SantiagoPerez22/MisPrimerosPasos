@@ -15,7 +15,7 @@ class EnfermedadController extends Controller
      */
     public function index()
     {
-        $enfermedades = Enfermedad::all();
+        $enfermedades = Enfermedad::with(['alumno.alumno'])->get();
         return view('enfermedades.index', compact('enfermedades'));
     }
 
@@ -26,7 +26,7 @@ class EnfermedadController extends Controller
      */
     public function create()
     {
-        $alumnos = TutorAlumno::all();
+        $alumnos = TutorAlumno::with('alumno')->get();
         return view('enfermedades.create', compact('alumnos'));
     }
 
@@ -39,9 +39,9 @@ class EnfermedadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string',
             'descripcion' => 'nullable|string',
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id'
+            'id_alumno' => 'required|integer'
         ]);
 
         Enfermedad::create($request->all());
@@ -58,7 +58,7 @@ class EnfermedadController extends Controller
      */
     public function show($id)
     {
-        $enfermedad = Enfermedad::find($id);
+        $enfermedad = Enfermedad::with(['alumno.alumno'])->findOrFail($id);
         return view('enfermedades.show', compact('enfermedad'));
     }
 
@@ -70,8 +70,8 @@ class EnfermedadController extends Controller
      */
     public function edit($id)
     {
-        $enfermedad = Enfermedad::find($id);
-        $alumnos = TutorAlumno::all();
+        $enfermedad = Enfermedad::with(['alumno.alumno'])->findOrFail($id);
+        $alumnos = TutorAlumno::with('alumno')->get();
         return view('enfermedades.edit', compact('enfermedad', 'alumnos'));
     }
 
@@ -85,12 +85,12 @@ class EnfermedadController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string',
             'descripcion' => 'nullable|string',
-            'id_alumno' => 'required|integer|exists:tutor_alumno,id'
+            'id_alumno' => 'required|integer'
         ]);
 
-        $enfermedad = Enfermedad::find($id);
+        $enfermedad = Enfermedad::findOrFail($id);
         $enfermedad->update($request->all());
 
         return redirect()->route('enfermedades.index')
@@ -105,13 +105,8 @@ class EnfermedadController extends Controller
      */
     public function destroy($id)
     {
-        $enfermedad = Enfermedad::find($id);
-        if ($enfermedad) {
-            $enfermedad->delete();
-        } else {
-            return redirect()->route('enfermedades.index')
-                ->with('error', 'Enfermedad no encontrada.');
-        }
+        $enfermedad = Enfermedad::findOrFail($id);
+        $enfermedad->delete();
 
         return redirect()->route('enfermedades.index')
             ->with('success', 'Enfermedad eliminada correctamente.');
