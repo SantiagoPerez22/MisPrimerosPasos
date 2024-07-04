@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h1>Personas</h1>
-    <a href="{{ route('personas.create') }}" class="btn btn-primary mb-2">Agregar Persona</a>
     <table class="table">
         <thead>
         <tr>

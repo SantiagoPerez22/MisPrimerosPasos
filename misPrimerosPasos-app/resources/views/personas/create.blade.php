@@ -7,7 +7,7 @@
         @csrf
         <div class="form-group">
             <label for="nombre1">Primer Nombre</label>
-            <input type="text" name="nombre1" class="form-control" required>
+            <input type="text" name="nombre1" class="block mt-1 w-full" required>
         </div>
         <div class="form-group">
             <label for="nombre2">Segundo Nombre</label>
