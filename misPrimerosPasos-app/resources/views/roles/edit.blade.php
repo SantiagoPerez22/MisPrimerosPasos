@@ -2,19 +2,30 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar Rol</h1>
-    <form action="{{ route('roles.update', $rol->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" class="form-control" value="{{ $rol->nombre }}" required>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Editar Rol
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Modificar los detalles del rol
+            </h6>
         </div>
-        <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" class="form-control">{{ $rol->descripcion }}</textarea>
+        <div class="card-body">
+            <form action="{{ route('roles.update', $rol->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group mb-3">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="{{ $rol->nombre }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="descripcion">Descripción</label>
+                    <textarea name="descripcion" class="form-control" required>{{ $rol->descripcion }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-    </form>
+    </div>
 </div>
 @endsection

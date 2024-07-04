@@ -2,14 +2,13 @@
 
 @section('content')
 <div class="container">
-    <!-- Table Element -->
     <div class="card border-0">
         <div class="card-header">
             <h5 class="card-title">
                 Salas
             </h5>
             <h6 class="card-subtitle text-muted">
-                Salas disponibles
+                Gestión de salas
             </h6>
         </div>
         <div class="card-body">
@@ -17,27 +16,23 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Número</th>
-                        <th scope="col">Acciones</th>
+                        <th>ID</th>
+                        <th>Número</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($salas as $sala)
                     <tr>
-                        <td class="col">{{ $sala->id }}</td>
+                        <td>{{ $sala->id }}</td>
                         <td>{{ $sala->numero }}</td>
                         <td>
-                            <a href="{{ route('salas.show', $sala->id) }}" class="btn btn-info">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <a href="{{ route('salas.edit', $sala->id) }}" class="btn btn-warning">
-                                <i class="fa fa-pencil"></i>
-                            </a>
+                            <a href="{{ route('salas.show', $sala->id) }}" class="btn btn-sm btn-info">Ver</a>
+                            <a href="{{ route('salas.edit', $sala->id) }}" class="btn btn-sm btn-warning">Editar</a>
                             <form action="{{ route('salas.destroy', $sala->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                             </form>
                         </td>
                     </tr>

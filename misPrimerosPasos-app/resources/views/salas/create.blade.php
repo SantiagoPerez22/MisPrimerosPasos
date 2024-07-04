@@ -2,14 +2,25 @@
 
 @section('content')
 <div class="container">
-    <h1>Agregar Sala</h1>
-    <form action="{{ route('salas.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="numero">Número</label>
-            <input type="number" name="numero" class="form-control" required>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Agregar Sala
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Añadir una nueva sala al sistema
+            </h6>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
+        <div class="card-body">
+            <form action="{{ route('salas.store') }}" method="POST">
+                @csrf
+                <div class="form-group mb-3">
+                    <label for="numero">Número</label>
+                    <input type="number" name="numero" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
