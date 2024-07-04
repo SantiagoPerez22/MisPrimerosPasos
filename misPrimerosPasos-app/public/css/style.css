@@ -6,9 +6,19 @@
     box-sizing: border-box;
 }
 
+.josefin-sans uniquifier {
+                   font-family: "Josefin Sans", sans-serif;
+                   font-optical-sizing: auto;
+                   font-weight: 400;
+                   font-style: normal;
+               }
+
 body {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.875rem;
+    font-family: "Josefin Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    font-size: 1rem;
     opacity: 1;
     overflow-y: scroll;
     margin: 0;
@@ -26,7 +36,24 @@ li {
 
 h4 {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.275rem;
+    font-size: 1.5rem;
+    color: var(--bs-emphasis-color);
+}
+
+h5 {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--bs-emphasis-color);
+}
+h6 {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-style: normal;
     color: var(--bs-emphasis-color);
 }
 
@@ -124,7 +151,6 @@ a.sidebar-link {
 
 @media (min-width:768px) {
     .content {
-        max-width: auto;
         width: auto;
     }
 }
@@ -213,4 +239,46 @@ html[data-bs-theme="dark"] .theme-toggle .fa-sun {
 
 html[data-bs-theme="light"] .theme-toggle .fa-moon {
     display: inline-block;
+}
+
+/* botón danger sin pulsar */
+.btn-danger {
+    background-color: #E2A27A; /* Color de fondo personalizado */
+    border-color: #e48b4f; /* Color del borde personalizado */
+    color: #000000; /* Color del texto personalizado */
+}
+
+/* botón danger al pasar el mouse */
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+    background-color: #e17b2a; /* Color de fondo al pasar el mouse */
+    border-color: #e1731e; /* Color del borde al pasar el mouse */
+    color: #fff; /* Color del texto al pasar el mouse */
+}
+
+/* botón warning sin pulsar */
+.btn-warning {
+    background-color: #E5ACAB; /* Color de fondo personalizado */
+    border-color: #e39c9b; /* Color del borde personalizado */
+    color: #000000; /* Color del texto personalizado */
+}
+
+/* botón warning al pasar el mouse */
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active {
+    background-color: #dd7472; /* Color de fondo al pasar el mouse */
+    border-color: #d35c59; /* Color del borde al pasar el mouse */
+    color: #fff; /* Color del texto al pasar el mouse */
+}
+
+/* botón info sin pulsar */
+.btn-info {
+    background-color: #DCBA4E; /* Color de fondo personalizado */
+    border-color: #DCBA4E; /* Color del borde personalizado */
+    color: #000000; /* Color del texto personalizado */
+}
+
+/* botón info al pasar el mouse */
+.btn-info:hover, .btn-info:focus, .btn-info:active {
+    background-color: #e0a800; /* Color de fondo al pasar el mouse */
+    border-color: #d39e00; /* Color del borde al pasar el mouse */
+    color: #fff; /* Color del texto al pasar el mouse */
 }

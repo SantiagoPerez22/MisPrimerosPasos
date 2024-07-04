@@ -1,9 +1,15 @@
-const sidebarToggle = document.querySelector("#sidebar-toggle");
-sidebarToggle.addEventListener("click",function(){
-    document.querySelector("#sidebar").classList.toggle("collapsed");
-});
+console.log("JavaScript cargado");
 
-document.querySelector(".theme-toggle").addEventListener("click",() => {
+const sidebarToggle = document.querySelector("#sidebar-toggle");
+if (sidebarToggle) {
+    sidebarToggle.addEventListener("click", function () {
+        document.querySelector("#sidebar").classList.toggle("collapsed");
+    });
+} else {
+    console.log("sidebar-toggle no encontrado");
+}
+
+document.querySelector(".theme-toggle").addEventListener("click", () => {
     toggleLocalStorage();
     toggleRootClass();
 });
@@ -20,25 +26,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-function toggleRootClass(){
+function toggleRootClass() {
     const current = document.documentElement.getAttribute('data-bs-theme');
     const inverted = current == 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-bs-theme',inverted);
+    document.documentElement.setAttribute('data-bs-theme', inverted);
 }
 
-function toggleLocalStorage(){
-    if(isLight()){
+function toggleLocalStorage() {
+    if (isLight()) {
         localStorage.removeItem("light");
-    }else{
-        localStorage.setItem("light","set");
+    } else {
+        localStorage.setItem("light", "set");
     }
 }
 
-function isLight(){
+function isLight() {
     return localStorage.getItem("light");
 }
 
-if(isLight()){
-    toggleRootClass();
-}
+// No es necesario repetir la lógica del tema aquí

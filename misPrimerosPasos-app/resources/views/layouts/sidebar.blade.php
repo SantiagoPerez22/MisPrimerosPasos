@@ -1,4 +1,4 @@
-<aside id="sidebar" class="js-sidebar collapsed" >
+<aside id="sidebar" class="js-sidebar" >
     <!-- Content For Sidebar -->
     <div class="h-100 d-flex flex-column">
         <div>
