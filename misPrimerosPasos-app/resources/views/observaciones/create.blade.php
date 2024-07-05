@@ -2,34 +2,45 @@
 
 @section('content')
 <div class="container">
-    <h1>Agregar Observación</h1>
-    <form action="{{ route('observaciones.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="id_alumno">Alumno</label>
-            <select name="id_alumno" class="form-control" required>
-                @foreach($alumnos as $alumno)
-                <option value="{{ $alumno->id }}">{{ $alumno->alumno->nombre1 }} {{ $alumno->alumno->apellido1 }}</option>
-                @endforeach
-            </select>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Agregar Observación
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Registrar nueva observación
+            </h6>
         </div>
-        <div class="form-group">
-            <label for="id_clase">Clase</label>
-            <select name="id_clase" class="form-control" required>
-                @foreach($clases as $clase)
-                <option value="{{ $clase->id }}">{{ $clase->sala->numero }}</option>
-                @endforeach
-            </select>
+        <div class="card-body">
+            <form action="{{ route('observaciones.store') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="id_alumno">Alumno</label>
+                    <select name="id_alumno" class="form-control" required>
+                        @foreach($alumnos as $alumno)
+                        <option value="{{ $alumno->id }}">{{ $alumno->alumno->nombre1 }} {{ $alumno->alumno->apellido1 }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="id_clase">Clase</label>
+                    <select name="id_clase" class="form-control" required>
+                        @foreach($clases as $clase)
+                        <option value="{{ $clase->id }}">{{ $clase->sala->numero }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea name="observaciones" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" name="fecha" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="observaciones">Observaciones</label>
-            <textarea name="observaciones" class="form-control" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="fecha">Fecha</label>
-            <input type="date" name="fecha" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
+    </div>
 </div>
 @endsection
