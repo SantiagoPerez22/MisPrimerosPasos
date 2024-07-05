@@ -4,10 +4,14 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h1>Detalle de la Observación</h1>
+            <h5 class="card-title">
+                Detalle de la Observacion
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Alumno: {{ $observacion->alumno->alumno->nombre1 }} {{ $observacion->alumno->alumno->apellido1 }}
+            </h6>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Alumno: {{ $observacion->alumno->alumno->nombre1 }} {{ $observacion->alumno->alumno->apellido1 }}</h5>
             <p class="card-text">Clase: {{ $observacion->clase->sala->numero }}</p>
             <p class="card-text">Observaciones: {{ $observacion->observaciones }}</p>
             <p class="card-text">Fecha: {{ $observacion->fecha }}</p>

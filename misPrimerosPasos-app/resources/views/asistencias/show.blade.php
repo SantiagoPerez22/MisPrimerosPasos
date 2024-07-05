@@ -8,11 +8,10 @@
                 Detalle de la Asistencia
             </h5>
             <h6 class="card-subtitle text-muted">
-                Información detallada de la asistencia
+                Alumno: {{ $asistencia->alumno->alumno->nombre1 }} {{ $asistencia->alumno->alumno->apellido1 }}
             </h6>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Alumno: {{ $asistencia->alumno->alumno->nombre1 }} {{ $asistencia->alumno->alumno->apellido1 }}</h5>
             <p class="card-text">Clase: {{ $asistencia->clase->sala->numero }}</p>
             <p class="card-text">Asistencia: {{ $asistencia->asistencia }}</p>
             <p class="card-text">Fecha: {{ $asistencia->fecha }}</p>
