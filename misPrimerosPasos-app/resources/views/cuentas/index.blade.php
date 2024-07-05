@@ -12,7 +12,6 @@
             </h6>
         </div>
         <div class="card-body">
-            <a href="{{ route('cuentas.create') }}" class="btn btn-primary mb-3">Agregar Cuenta</a>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>

@@ -2,8 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalle del Informe Semanal</h1>
-    <div class="card">
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Detalle del Informe Semanal
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Detalles específicos del informe semanal
+            </h6>
+        </div>
         <div class="card-body">
             <h5 class="card-title">Alumno: {{ $informeSemanal->alumno->alumno->nombre1 }} {{ $informeSemanal->alumno->alumno->apellido1 }}</h5>
             <p class="card-text">Altura: {{ $informeSemanal->altura }}</p>
