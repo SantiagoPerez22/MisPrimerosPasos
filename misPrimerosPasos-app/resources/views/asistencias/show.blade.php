@@ -2,8 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalle de la Asistencia</h1>
-    <div class="card">
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Detalle de la Asistencia
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Información detallada de la asistencia
+            </h6>
+        </div>
         <div class="card-body">
             <h5 class="card-title">Alumno: {{ $asistencia->alumno->alumno->nombre1 }} {{ $asistencia->alumno->alumno->apellido1 }}</h5>
             <p class="card-text">Clase: {{ $asistencia->clase->sala->numero }}</p>
