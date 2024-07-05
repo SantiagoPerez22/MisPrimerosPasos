@@ -2,19 +2,30 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar Nivel</h1>
-    <form action="{{ route('niveles.update', $nivel->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" class="form-control" value="{{ $nivel->nombre }}" required>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Editar Nivel
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Modificar los detalles del nivel
+            </h6>
         </div>
-        <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" class="form-control">{{ $nivel->descripcion }}</textarea>
+        <div class="card-body">
+            <form action="{{ route('niveles.update', $nivel->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group mb-3">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="{{ $nivel->nombre }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="descripcion">Descripción</label>
+                    <textarea name="descripcion" class="form-control" required>{{ $nivel->descripcion }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-    </form>
+    </div>
 </div>
 @endsection
