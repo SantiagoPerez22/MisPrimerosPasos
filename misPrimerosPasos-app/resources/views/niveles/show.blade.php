@@ -2,10 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles del Nivel</h1>
     <div class="card">
         <div class="card-header">
-            Nivel #{{ $nivel->id }}
+            <h5 class="card-title">
+                Detalles de Nivel
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Nivel #{{ $nivel->id }}
+            </h6> 
         </div>
         <div class="card-body">
             <p><strong>Nombre:</strong> {{ $nivel->nombre }}</p>

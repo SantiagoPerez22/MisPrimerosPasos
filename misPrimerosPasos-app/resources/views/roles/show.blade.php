@@ -4,8 +4,12 @@
 <div class="container">   
     <div class="card">
         <div class="card-header">
-            <h1>Detalles del Rol</h1>
-            Rol #{{ $rol->id }}
+            <h5 class="card-title">
+                Detalle de rol
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Rol #{{ $rol->id }}
+            </h6> 
         </div>
         <div class="card-body">
             <p><strong>Nombre:</strong> {{ $rol->nombre }}</p>

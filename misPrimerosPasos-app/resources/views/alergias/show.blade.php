@@ -8,11 +8,11 @@
             <h5 class="card-title">
                 Detalle de la Alergia
             </h5>
-        </div>
-        <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">
                 Alergia: {{ $alergia->nombre }}
             </h6>
+        </div>
+        <div class="card-body">           
             <p class="card-text"><strong>Descripción:</strong> {{ $alergia->descripcion }}</p>
             <p class="card-text"><strong>Alumno:</strong> 
                 {{ $alergia->tutorAlumno ? $alergia->tutorAlumno->alumno->nombre1 . ' ' . $alergia->tutorAlumno->alumno->apellido1 : 'No asignado' }}
