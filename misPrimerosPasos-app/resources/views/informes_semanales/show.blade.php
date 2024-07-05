@@ -8,11 +8,10 @@
                 Detalle del Informe Semanal
             </h5>
             <h6 class="card-subtitle text-muted">
-                Detalles específicos del informe semanal
+                Alumno: {{ $informeSemanal->alumno->alumno->nombre1 }} {{ $informeSemanal->alumno->alumno->apellido1 }}
             </h6>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Alumno: {{ $informeSemanal->alumno->alumno->nombre1 }} {{ $informeSemanal->alumno->alumno->apellido1 }}</h5>
             <p class="card-text">Altura: {{ $informeSemanal->altura }}</p>
             <p class="card-text">Peso: {{ $informeSemanal->peso }}</p>
             <p class="card-text">Fecha: {{ $informeSemanal->fecha }}</p>
