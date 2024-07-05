@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Condición</h1>
+
     <div class="card">
         <div class="card-header">
-            Condición #{{ $condicion->id }}
+            <h5 class="card-title">Detalles de la Condición</h5>
+            <h6 class="card-subtitle text-muted">
+                Condición #{{ $condicion->id }}
+            </h6>
         </div>
         <div class="card-body">
             <p><strong>Nombre:</strong> {{ $condicion->nombre }}</p>
