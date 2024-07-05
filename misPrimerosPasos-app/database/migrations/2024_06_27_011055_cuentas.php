@@ -15,11 +15,11 @@ class Cuentas extends Migration
             $table->string('password', 255);
             $table->unsignedBigInteger('rol_id');
             $table->timestamps();
-
-            $table->foreign('id_persona')->references('id')->on('personas');
-            $table->foreign('email')->references('email')->on('personas');
-            $table->foreign('rol_id')->references('id')->on('roles');
-        });
+        
+            $table->foreign('id_persona')->references('id')->on('personas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('email')->references('email')->on('personas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
+        });        
     }
 
     public function down()

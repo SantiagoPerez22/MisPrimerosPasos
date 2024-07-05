@@ -20,7 +20,7 @@ class CuentasSeeder extends Seeder
 
         DB::table('cuentas')->insert([
             'id_persona' => 2,
-            'email' => 'maria.lopez@example.com',
+            'email' => 'maria.rodriguez@example.com',
             'password' => bcrypt('password123'),
             'rol_id' => 2,
             'created_at' => now(),

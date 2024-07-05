@@ -17,9 +17,9 @@ class Personas extends Migration
             $table->integer('edad');
             $table->string('rut', 12);
             $table->string('telefono', 15);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->timestamps();
-        });
+        });        
     }
 
     public function down()

@@ -282,3 +282,18 @@ html[data-bs-theme="light"] .theme-toggle .fa-moon {
     border-color: #d39e00; /* Color del borde al pasar el mouse */
     color: #fff; /* Color del texto al pasar el mouse */
 }
+
+
+/* botón primary sin pulsar */
+.btn-primary {
+    background-color: #8dd19f; /* Color de fondo personalizado */
+    border-color: #72cf8b; /* Color del borde personalizado */
+    color: #000000; /* Color del texto personalizado */
+}
+
+/* botón info al pasar el mouse */
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #337043; /* Color de fondo al pasar el mouse */
+    border-color: #2a703a; /* Color del borde al pasar el mouse */
+    color: #ffffff; /* Color del texto al pasar el mouse */
+}

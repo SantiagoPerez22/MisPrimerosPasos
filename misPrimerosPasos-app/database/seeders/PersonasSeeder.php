@@ -70,7 +70,7 @@ class PersonasSeeder extends Seeder
                 'edad' => 40,
                 'rut' => '33333333-2',
                 'telefono' => '444444444',
-                'email' => 'pedro.garcia@example.com',
+                'email' => 'Gabriel.gatica@example.com',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
