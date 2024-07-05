@@ -2,10 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalle de la Clase</h1>
     <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">
+                Detalle de la Clase
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Ámbito: {{ $clase->ambito->nombre }}
+            </h6>
+        </div>
         <div class="card-body">
-            <h5 class="card-title">Ámbito: {{ $clase->ambito->nombre }}</h5>
             <p class="card-text">Núcleo: {{ $clase->nucleo->nombre }}</p>
             <p class="card-text">Nivel: {{ $clase->nivel->nombre }}</p>
             <p class="card-text">Profesor: {{ $clase->profesor->persona->nombre1 }} {{ $clase->profesor->persona->apellido1 }}</p>

@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalle de la Observación</h1>
     <div class="card">
+        <div class="card-header">
+            <h1>Detalle de la Observación</h1>
+        </div>
         <div class="card-body">
             <h5 class="card-title">Alumno: {{ $observacion->alumno->alumno->nombre1 }} {{ $observacion->alumno->alumno->apellido1 }}</h5>
             <p class="card-text">Clase: {{ $observacion->clase->sala->numero }}</p>
