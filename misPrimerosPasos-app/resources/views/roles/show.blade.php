@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Detalles del Rol</h1>
+<div class="container">   
     <div class="card">
         <div class="card-header">
+            <h1>Detalles del Rol</h1>
             Rol #{{ $rol->id }}
         </div>
         <div class="card-body">
