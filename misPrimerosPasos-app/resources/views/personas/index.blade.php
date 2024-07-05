@@ -2,36 +2,55 @@
 
 @section('content')
 <div class="container">
-    <h1>Personas</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre 1</th>
-            <th>Apellido 1</th>
-            <th>Email</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($personas as $persona)
-        <tr>
-            <td>{{ $persona->id }}</td>
-            <td>{{ $persona->nombre1 }}</td>
-            <td>{{ $persona->apellido1 }}</td>
-            <td>{{ $persona->email }}</td>
-            <td>
-                <a href="{{ route('personas.show', $persona->id) }}" class="btn btn-info">Ver</a>
-                <a href="{{ route('personas.edit', $persona->id) }}" class="btn btn-warning">Editar</a>
-                <form action="{{ route('personas.destroy', $persona->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Personas
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Lista de todas las personas
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre 1</th>
+                        <th scope="col">Apellido 1</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($personas as $persona)
+                    <tr>
+                        <th scope="row">{{ $persona->id }}</th>
+                        <td>{{ $persona->nombre1 }}</td>
+                        <td>{{ $persona->apellido1 }}</td>
+                        <td>{{ $persona->email }}</td>
+                        <td>
+                            <a href="{{ route('personas.show', $persona->id) }}" class="btn btn-sm btn-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{{ route('personas.edit', $persona->id) }}" class="btn btn-sm btn-warning">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <form action="{{ route('personas.destroy', $persona->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

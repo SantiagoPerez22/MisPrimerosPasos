@@ -2,10 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Persona</h1>
-    <div class="card">
+    <div class="card border-0">
         <div class="card-header">
-            Persona #{{ $persona->id }}
+            <h5 class="card-title">
+                Detalles de la Persona
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Información detallada de la persona #{{ $persona->id }}
+            </h6>
         </div>
         <div class="card-body">
             <p><strong>Nombre 1:</strong> {{ $persona->nombre1 }}</p>
