@@ -2,14 +2,20 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Sala</h1>
-    <div class="card">
+    <div class="card border-0">
         <div class="card-header">
-            Sala #{{ $sala->id }}
+            <h5 class="card-title">
+                Detalles de la Sala
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Número #{{ $sala->id }}
+            </h6> 
         </div>
         <div class="card-body">
-            <p><strong>Número:</strong> {{ $sala->numero }}</p>
-            <a href="{{ route('salas.index') }}" class="btn btn-primary">Volver a la lista</a>
+            <div class="card-text">
+                <p><strong>Número:</strong> {{ $sala->numero }}</p>
+                <a href="{{ route('salas.index') }}" class="btn btn-primary">Volver a la lista</a>
+            </div>
         </div>
     </div>
 </div>

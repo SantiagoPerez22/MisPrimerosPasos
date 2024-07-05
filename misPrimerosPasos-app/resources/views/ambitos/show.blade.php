@@ -2,10 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles del Ámbito</h1>
     <div class="card">
         <div class="card-header">
-            Ámbito #{{ $ambito->id }}
+        <h5 class="card-title">
+                Detalles del Ámbito
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Ámbito #{{ $ambito->id }}
+            </h6> 
         </div>
         <div class="card-body">
             <p><strong>Nombre:</strong> {{ $ambito->nombre }}</p>
