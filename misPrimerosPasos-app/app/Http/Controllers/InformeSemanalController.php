@@ -16,7 +16,9 @@ class InformeSemanalController extends Controller
     public function index()
     {
         $informesSemanales = InformeSemanal::with(['alumno.alumno'])->get();
-        return view('informes_semanales.index', compact('informesSemanales'));
+        $alumnos = TutorAlumno::with('alumno')->get();
+
+        return view('informes_semanales.index', compact('informesSemanales', 'alumnos'));
     }
 
     /**
@@ -112,5 +114,47 @@ class InformeSemanalController extends Controller
 
         return redirect()->route('informes_semanales.index')
             ->with('success', 'Informe Semanal eliminado correctamente.');
+    }
+
+    /** funciones para los graficos de informes_semanales/index.blade.php */
+
+    // funcion para pasar la obtencion del los datos de grafico altura.
+    public function getAltura($alumno_id)
+    {
+        // Query para obtencion de datos.
+        $altura = InformeSemanal::where('id_alumno', $alumno_id)
+                                    // Ordernar por fecha / ascendente
+                                    ->orderBy('fecha', 'asc')
+
+                                    // Obtener fecha y peso.
+                                    ->get(['fecha', 'altura'])
+
+                                    // Mapeo de datos.
+                                    ->map(function($datos) {
+                                        return ['fecha' => $datos->fecha, 'valor' => $datos->altura];
+                                    });
+
+        // Return de los datos.
+        return response()->json($altura);
+    }
+
+    // funcion para pasar la obtencion del los datos de grafico peso.
+    public function getPeso($alumno_id)
+    {
+        // Query para obtencion de datos.
+        $peso = InformeSemanal::where('id_alumno', $alumno_id)
+                                    // Ordernar por fecha / ascendente
+                                    ->orderBy('fecha', 'asc')
+
+                                    // Obtener fecha y peso.
+                                    ->get(['fecha', 'peso'])
+
+                                    // Mapeo de datos.
+                                    ->map(function($datos) {
+                                        return ['fecha' => $datos->fecha, 'valor' => $datos->peso];
+                                    });
+
+        // Return de los datos.
+        return response()->json($peso);
     }
 }

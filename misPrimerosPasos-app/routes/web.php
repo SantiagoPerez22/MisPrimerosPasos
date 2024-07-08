@@ -47,6 +47,12 @@ Route::resource('clases', ClaseController::class)->middleware('auth');
 Route::resource('asistencias', AsistenciaController::class)->middleware('auth');
 Route::resource('observaciones', ObservacionController::class)->middleware('auth');
 
+// Ruta para pasar datos para la creacion del grafico de altura.
+Route::get('/api/informes-semanales/{student_id}/altura', [InformeSemanalController::class, 'getAltura']);
+// Ruta para pasar datos para la creacion del grafico de peso.
+Route::get('/api/informes-semanales/{student_id}/peso', [InformeSemanalController::class, 'getPeso']);
+
+
 // Ruta para mostrar el formulario de inicio de sesión
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 // Ruta para manejar el proceso de inicio de sesión
