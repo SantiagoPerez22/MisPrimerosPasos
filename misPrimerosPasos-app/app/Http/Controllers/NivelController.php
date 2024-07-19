@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class NivelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view nivel|create nivel|edit nivel|delete nivel', ['only' => ['index','show']]);
+        $this->middleware('permission:create nivel', ['only' => ['create','store']]);
+        $this->middleware('permission:edit nivel', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete nivel', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

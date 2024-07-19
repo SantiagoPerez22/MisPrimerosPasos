@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class AlergiaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view alergia|create alergia|edit alergia|delete alergia', ['only' => ['index','show']]);
+        $this->middleware('permission:create alergia', ['only' => ['create','store']]);
+        $this->middleware('permission:edit alergia', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete alergia', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $alergias = Alergia::all();

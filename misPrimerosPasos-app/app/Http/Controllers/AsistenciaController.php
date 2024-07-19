@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AsistenciaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view asistencia|create asistencia|edit asistencia|delete asistencia', ['only' => ['index','show']]);
+        $this->middleware('permission:create asistencia', ['only' => ['create','store']]);
+        $this->middleware('permission:edit asistencia', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete asistencia', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $asistencias = Asistencia::with(['clase', 'alumno.alumno', 'cuenta'])->get();

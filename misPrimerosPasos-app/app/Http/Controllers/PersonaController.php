@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class PersonaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view persona|create persona|edit persona|delete persona', ['only' => ['index','show']]);
+        $this->middleware('permission:create persona', ['only' => ['create','store']]);
+        $this->middleware('permission:edit persona', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete persona', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $personas = Persona::all();

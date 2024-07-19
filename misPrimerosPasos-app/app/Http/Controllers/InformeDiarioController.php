@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class InformeDiarioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view informe_diario|create informe_diario|edit informe_diario|delete informe_diario', ['only' => ['index','show']]);
+        $this->middleware('permission:create informe_diario', ['only' => ['create','store']]);
+        $this->middleware('permission:edit informe_diario', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete informe_diario', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $informesDiarios = InformeDiario::with(['condicion', 'alumno.alumno', 'user'])->get();

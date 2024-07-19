@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class DomicilioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view domicilio|create domicilio|edit domicilio|delete domicilio', ['only' => ['index','show']]);
+        $this->middleware('permission:create domicilio', ['only' => ['create','store']]);
+        $this->middleware('permission:edit domicilio', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete domicilio', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $domicilios = Domicilio::all();

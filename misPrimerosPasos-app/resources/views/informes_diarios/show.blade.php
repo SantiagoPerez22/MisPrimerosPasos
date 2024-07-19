@@ -14,7 +14,7 @@
             <p class="card-text"><strong>Cuenta:</strong> {{ $informeDiario->user->name }}</p>
             @if ($informeDiario->imagen)
             <p class="card-text"><strong>Imagen:</strong></p>
-            <img src="{{ asset('storage/' . $informeDiario->imagen) }}" alt="Imagen" class="img-thumbnail" width="150">
+            <img src="{{ asset('storage/' . $informeDiario->imagen) }}" alt="Imagen" class="img-fluid">
             @endif
             <a href="{{ route('informes_diarios.edit', $informeDiario->id) }}" class="btn btn-warning">Editar</a>
             <form action="{{ route('informes_diarios.destroy', $informeDiario->id) }}" method="POST" style="display:inline-block;">

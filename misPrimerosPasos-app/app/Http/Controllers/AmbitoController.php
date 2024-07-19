@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class AmbitoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view ambito|create ambito|edit ambito|delete ambito', ['only' => ['index','show']]);
+        $this->middleware('permission:create ambito', ['only' => ['create','store']]);
+        $this->middleware('permission:edit ambito', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete ambito', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

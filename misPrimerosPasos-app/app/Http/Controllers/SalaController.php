@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class SalaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view sala|create sala|edit sala|delete sala', ['only' => ['index','show']]);
+        $this->middleware('permission:create sala', ['only' => ['create','store']]);
+        $this->middleware('permission:edit sala', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete sala', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $salas = Sala::all();

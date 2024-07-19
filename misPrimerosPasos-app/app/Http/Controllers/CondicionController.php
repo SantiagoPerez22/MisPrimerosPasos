@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class CondicionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view condicion|create condicion|edit condicion|delete condicion', ['only' => ['index','show']]);
+        $this->middleware('permission:create condicion', ['only' => ['create','store']]);
+        $this->middleware('permission:edit condicion', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete condicion', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $condiciones = Condicion::all();

@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class EnfermedadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view enfermedad|create enfermedad|edit enfermedad|delete enfermedad', ['only' => ['index','show']]);
+        $this->middleware('permission:create enfermedad', ['only' => ['create','store']]);
+        $this->middleware('permission:edit enfermedad', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete enfermedad', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $enfermedades = Enfermedad::all();

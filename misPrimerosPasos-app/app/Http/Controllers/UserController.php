@@ -9,7 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function __construct()
+    {
+        $this->middleware('permission:view user|create user|edit user|delete user', ['only' => ['index', 'show']]);
+        $this->middleware('permission:create user', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete user', ['only' => ['destroy']]);
+    }
+
+        public function index()
     {
         $users = User::with('persona')->get();
         return view('users.index', compact('users'));

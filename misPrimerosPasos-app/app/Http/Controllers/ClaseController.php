@@ -12,6 +12,14 @@ use Illuminate\Http\Request;
 
 class ClaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view clase|create clase|edit clase|delete clase', ['only' => ['index','show']]);
+        $this->middleware('permission:create clase', ['only' => ['create','store']]);
+        $this->middleware('permission:edit clase', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete clase', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $clases = Clase::with(['ambito', 'nucleo', 'nivel', 'profesor', 'asistente1', 'asistente2', 'sala'])->get();

@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ObservacionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view observacion')->only(['index', 'show']);
+        $this->middleware('permission:create observacion')->only(['create', 'store']);
+        $this->middleware('permission:edit observacion')->only(['edit', 'update']);
+        $this->middleware('permission:delete observacion')->only(['destroy']);
+    }
+
     public function index()
     {
         $observaciones = Observacion::with(['clase.nivel', 'alumno.alumno', 'cuenta'])->get();

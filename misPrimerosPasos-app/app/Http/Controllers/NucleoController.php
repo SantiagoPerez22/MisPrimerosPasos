@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class NucleoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view nucleo|create nucleo|edit nucleo|delete nucleo', ['only' => ['index','show']]);
+        $this->middleware('permission:create nucleo', ['only' => ['create','store']]);
+        $this->middleware('permission:edit nucleo', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete nucleo', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

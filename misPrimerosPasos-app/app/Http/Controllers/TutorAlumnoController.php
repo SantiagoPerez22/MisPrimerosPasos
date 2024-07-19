@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class TutorAlumnoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view tutor_alumno|create tutor_alumno|edit tutor_alumno|delete tutor_alumno', ['only' => ['index','show']]);
+        $this->middleware('permission:create tutor_alumno', ['only' => ['create','store']]);
+        $this->middleware('permission:edit tutor_alumno', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete tutor_alumno', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $tutoresAlumnos = TutorAlumno::all();

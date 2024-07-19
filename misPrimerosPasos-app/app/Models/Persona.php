@@ -27,4 +27,9 @@ class Persona extends Model
     {
         return $this->belongsTo(Domicilio::class, 'domicilio_id');
     }
+
+    public function getNombreCompletoAttribute()
+    {
+        return "{$this->nombre1} {$this->nombre2} {$this->apellido1} {$this->apellido2}";
+    }
 }
