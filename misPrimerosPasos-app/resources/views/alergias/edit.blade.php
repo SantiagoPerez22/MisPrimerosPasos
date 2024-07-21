@@ -2,23 +2,33 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar Alergia</h1>
-    <form action="{{ route('alergias.update', $alergia->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" name="nombre" class="form-control" id="nombre" value="{{ $alergia->nombre }}" required>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">Editar Alergia</h5>
         </div>
-        <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea name="descripcion" class="form-control" id="descripcion">{{ $alergia->descripcion }}</textarea>
+        <div class="card-body">
+            <form action="{{ route('alergias.update', $alergia->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <p>
+                    <strong>Tipo de alergia:</strong>
+                    <input type="text" name="nombre" class="form-control" id="nombre" value="{{ $alergia->nombre }}" required>
+                </p>
+                <p>
+                    <strong>Descripción:</strong>
+                    <textarea name="descripcion" class="form-control" id="descripcion">{{ $alergia->descripcion }}</textarea>
+                </p>
+                <p>
+                    <strong>Párvulo:</strong>
+                    <select name="id_alumno" class="form-control" id="id_alumno" required>
+                        @foreach ($tutoresAlumnos as $tutorAlumno)
+                        <option value="{{ $tutorAlumno->id }}" {{ $tutorAlumno->id == $alergia->id_alumno ? 'selected' : '' }}>{{ $tutorAlumno->alumno->nombre1 }} {{ $tutorAlumno->alumno->apellido1 }}</option>
+                        @endforeach
+                    </select>
+                </p>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="id_alumno" class="form-label">ID Alumno</label>
-            <input type="number" name="id_alumno" class="form-control" id="id_alumno" value="{{ $alergia->id_alumno }}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-    </form>
+    </div>
 </div>
 @endsection

@@ -4,34 +4,34 @@
 <div class="container">
     <div class="card border-0">
         <div class="card-header">
-            <h5 class="card-title">Crear Tutor-Alumno</h5>
-            <h6 class="card-subtitle text-muted">Añadir una nueva relación tutor-alumno al sistema</h6>
+            <h5 class="card-title">Crear Tutor del párvulo</h5>
+            <h6 class="card-subtitle text-muted">Añadir una nueva relación tutor-párvulo al sistema</h6>
         </div>
         <div class="card-body">
             <form action="{{ route('tutor_alumno.store') }}" method="POST">
                 @csrf
                 <div class="form-group mb-3">
-                    <label for="id_alumno" class="form-label">Alumno</label>
+                    <label for="id_alumno" class="form-label">Párvulo</label>
                     <select name="id_alumno" class="form-control" required>
-                        <option value="">Selecciona un alumno</option>
+                        <option value="">Seleccionar párvulo</option>
                         @foreach ($alumnos as $alumno)
                         <option value="{{ $alumno->id }}">{{ $alumno->nombre1 }} {{ $alumno->apellido1 }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="id_tutor1" class="form-label">Tutor 1</label>
+                    <label for="id_tutor1" class="form-label">Tutor principal</label>
                     <select name="id_tutor1" class="form-control" required>
-                        <option value="">Selecciona un tutor</option>
+                        <option value="">Seleccionar tutor</option>
                         @foreach ($tutores as $tutor)
                         <option value="{{ $tutor->id }}">{{ $tutor->nombre1 }} {{ $tutor->apellido1 }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="id_tutor2" class="form-label">Tutor 2 (opcional)</label>
+                    <label for="id_tutor2" class="form-label">Tutor secundario (opcional)</label>
                     <select name="id_tutor2" class="form-control">
-                        <option value="">Selecciona un tutor</option>
+                        <option value="">Seleccionar tutor</option>
                         @foreach ($tutores as $tutor)
                         <option value="{{ $tutor->id }}">{{ $tutor->nombre1 }} {{ $tutor->apellido1 }}</option>
                         @endforeach
@@ -40,7 +40,7 @@
                 <div class="form-group mb-3">
                     <label for="id_nivel" class="form-label">Nivel</label>
                     <select name="id_nivel" class="form-control" required>
-                        <option value="">Selecciona un nivel</option>
+                        <option value="">Seleccionar nivel</option>
                         @foreach ($niveles as $nivel)
                         <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
                         @endforeach
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="fecha_matricula" class="form-label">Fecha de Matrícula</label>
-                    <input type="date" name="fecha_matricula" class="form-control" required>
+                    <input type="date" id="fecha_matricula" name="fecha_matricula" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
@@ -56,3 +56,19 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    // public/script.js
+    document.addEventListener('DOMContentLoaded', function () {
+        const dateInput = document.getElementById('fecha_matricula');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            console.log("Setting date to:", today); // Debugging line
+            dateInput.value = today;
+        } else {
+            console.log("Date input not found."); // Debugging line
+        }
+    });
+</script>
+@endpush

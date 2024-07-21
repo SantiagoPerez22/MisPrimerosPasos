@@ -8,7 +8,7 @@
                 Agregar Sala
             </h5>
             <h6 class="card-subtitle text-muted">
-                Añadir una nueva sala al sistema
+                Añadir nueva sala al sistema
             </h6>
         </div>
         <div class="card-body">

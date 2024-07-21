@@ -23,6 +23,13 @@ class RoleController extends Controller
         return view('roles.index', compact('roles'));
     }
 
+    public function indexUsersRoles()
+    {
+        $roles = Role::all();
+        $users = User::with('roles')->get();
+        return view('roles.index_users_roles', compact('roles', 'users'));
+    }
+
     public function create()
     {
         $permissions = Permission::all();
@@ -44,7 +51,7 @@ class RoleController extends Controller
         }
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully.');
+            ->with('success', 'Rol creado exitosamente.');
     }
 
     public function show(Role $role)
@@ -70,7 +77,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->permissions);
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role updated successfully.');
+            ->with('success', 'Rol actualizado exitosamente.');
     }
 
     public function destroy(Role $role)
@@ -78,7 +85,7 @@ class RoleController extends Controller
         $role->delete();
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role deleted successfully.');
+            ->with('success', 'Rol borrado exitosamente.');
     }
 
     public function assignRolesForm()
@@ -100,7 +107,7 @@ class RoleController extends Controller
         $user->syncRoles($request->roles);
 
         return redirect()->route('roles.assign.form')
-            ->with('success', 'Roles assigned successfully.');
+            ->with('success', 'Rol asignado exitosamente.');
     }
 
 
@@ -122,7 +129,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->permissions);
 
         return redirect()->route('roles.permissions.form')
-            ->with('success', 'Permissions managed successfully.');
+            ->with('success', 'Permisos registrados exitosamente.');
     }
 
 }

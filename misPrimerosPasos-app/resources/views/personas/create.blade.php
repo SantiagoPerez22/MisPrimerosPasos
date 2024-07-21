@@ -43,12 +43,17 @@
                     <input type="text" name="telefono" class="form-control" id="telefono">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Correo electrónico</label>
                     <input type="email" name="email" class="form-control" id="email" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="domicilio_id" class="form-label">Domicilio ID</label>
-                    <input type="number" name="domicilio_id" class="form-control" id="domicilio_id">
+                    <label for="domicilio_id" class="form-label">Domicilio</label>
+                    <select name="domicilio_id" class="form-control" id="domicilio_id" required>
+                        <option value="">Selecciona un domicilio</option>
+                        @foreach ($domicilios as $domicilio)
+                        <option value="{{ $domicilio->id }}">{{ $domicilio->direccion }}, {{ $domicilio->ciudad }}, {{ $domicilio->estado }}, {{ $domicilio->codigo_postal }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

@@ -24,9 +24,9 @@
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="id_alumno" class="form-label">Alumno</label>
+                    <label for="id_alumno" class="form-label">Párvulo</label>
                     <select name="id_alumno" class="form-control" id="id_alumno" required>
-                        <option value="">Selecciona un alumno</option>
+                        <option value="">Seleccionar párvulo</option>
                         @foreach ($tutoresAlumnos as $tutorAlumno)
                         <option value="{{ $tutorAlumno->id }}">{{ $tutorAlumno->alumno->nombre1 }} {{ $tutorAlumno->alumno->apellido1 }}</option>
                         @endforeach

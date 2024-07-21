@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     Route::middleware(['role:Administrador|Profesor|Asistente|Tutor|Auditor'])->group(function () {
-        Route::get('roles/assign', [RoleController::class, 'assignRolesForm'])->name('roles.assign.form');
+        Route::get('roles-usuarios', [RoleController::class, 'indexUsersRoles'])->name('roles.indexUsersRoles');        Route::get('roles/assign', [RoleController::class, 'assignRolesForm'])->name('roles.assign.form');
         Route::post('roles/assign', [RoleController::class, 'assignRoles'])->name('roles.assign');
         Route::get('roles/permissions', [RoleController::class, 'managePermissionsForm'])->name('roles.permissions.form');
         Route::post('roles/permissions', [RoleController::class, 'managePermissions'])->name('roles.permissions');

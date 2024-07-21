@@ -24,7 +24,7 @@
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Correo electrónico</label>
                     <input type="email" name="email" class="form-control" id="email" readonly>
                 </div>
                 <div class="form-group mb-3">

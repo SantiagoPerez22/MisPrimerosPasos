@@ -2,20 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Enfermedad</h1>
-    <div class="card">
+    <div class="card border-0">
         <div class="card-header">
-            {{ $enfermedad->nombre }}
+            <h5 class="card-title">Detalles de la Enfermedad</h5>
         </div>
         <div class="card-body">
-            <p class="card-text"><strong>Descripción:</strong> {{ $enfermedad->descripcion }}</p>
-            <p class="card-text"><strong>ID Alumno:</strong> {{ $enfermedad->id_alumno }}</p>
-            <a href="{{ route('enfermedades.edit', $enfermedad->id) }}" class="btn btn-warning">Editar</a>
-            <form action="{{ route('enfermedades.destroy', $enfermedad->id) }}" method="POST" style="display:inline-block;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
+            <p><strong>Tipo de enfermedad:</strong> {{ $enfermedad->nombre }}</p>
+            <p><strong>Descripción:</strong> {{ $enfermedad->descripcion }}</p>
+            <p><strong>Párvulo:</strong> {{ $enfermedad->alumno->alumno->nombre1 }} {{ $enfermedad->alumno->alumno->apellido1 }}</p>
+            <a href="{{ route('enfermedades.index') }}" class="btn btn-primary">Volver a la lista</a>
         </div>
     </div>
 </div>

@@ -2,20 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h1>Detalles de la Alergia</h1>
-    <div class="card">
+    <div class="card border-0">
         <div class="card-header">
-            {{ $alergia->nombre }}
+            <h5 class="card-title">Detalles de la Alergia</h5>
         </div>
         <div class="card-body">
-            <p class="card-text"><strong>Descripción:</strong> {{ $alergia->descripcion }}</p>
-            <p class="card-text"><strong>ID Alumno:</strong> {{ $alergia->id_alumno }}</p>
-            <a href="{{ route('alergias.edit', $alergia->id) }}" class="btn btn-warning">Editar</a>
-            <form action="{{ route('alergias.destroy', $alergia->id) }}" method="POST" style="display:inline-block;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
+            <p><strong>Tipo de alergia:</strong> {{ $alergia->nombre }}</p>
+            <p><strong>Descripción:</strong> {{ $alergia->descripcion }}</p>
+            <p><strong>Párvulo:</strong> {{ $alergia->alumno->alumno->nombre1 }} {{ $alergia->alumno->alumno->apellido1 }}</p>
+            <a href="{{ route('alergias.index') }}" class="btn btn-primary">Volver a la lista</a>
         </div>
     </div>
 </div>

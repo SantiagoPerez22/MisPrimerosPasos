@@ -12,7 +12,7 @@
             </h6> 
         </div>
         <div class="card-body">
-            <p><strong>Nombre:</strong> {{ $ambito->nombre }}</p>
+            <p><strong>Nombre del ámbito:</strong> {{ $ambito->nombre }}</p>
             <p><strong>Descripción:</strong> {{ $ambito->descripcion }}</p>
             <a href="{{ route('ambitos.index') }}" class="btn btn-primary">Volver a la lista</a>
         </div>

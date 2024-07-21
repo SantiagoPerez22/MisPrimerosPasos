@@ -8,7 +8,7 @@
                 Ámbitos
             </h5>
             <h6 class="card-subtitle text-muted">
-                Lista de ámbitos en el sistema
+                Listado de ámbitos en el sistema
             </h6>
         </div>
         <div class="card-body">
@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
+                            <th>Nombre del ámbito</th>
                             <th>Descripción</th>
                             <th>Acciones</th>
                         </tr>

@@ -16,7 +16,7 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group mb-3">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Nombre del ámbito</label>
                     <input type="text" name="nombre" class="form-control" value="{{ $ambito->nombre }}" required>
                 </div>
                 <div class="form-group mb-3">

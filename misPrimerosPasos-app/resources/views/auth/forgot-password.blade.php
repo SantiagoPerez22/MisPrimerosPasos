@@ -7,19 +7,19 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('¿Olvidaste tu contraseña? No hay problema. Déjanos tu correo para mandarte un enlace de reinicio de contraseña que te permitirá crear una nueva.') }}
         </div>
 
-        <!-- Session Status -->
+        <!-- Estado de la Sesión -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Validation Errors -->
+        <!-- Validación de errores -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
 
-            <!-- Email Address -->
+            <!-- Correo electrónico -->
             <div>
                 <x-label for="email" :value="__('Email')" />
 
@@ -28,7 +28,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('Enlace de reinicio de contraseña') }}
                 </x-button>
             </div>
         </form>

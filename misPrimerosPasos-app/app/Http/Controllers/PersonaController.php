@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
+use App\Models\Domicilio;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -17,13 +18,14 @@ class PersonaController extends Controller
 
     public function index()
     {
-        $personas = Persona::all();
+        $personas = Persona::with('domicilio')->get();
         return view('personas.index', compact('personas'));
     }
 
     public function create()
     {
-        return view('personas.create');
+        $domicilios = Domicilio::all();
+        return view('personas.create', compact('domicilios'));
     }
 
     public function store(Request $request)
@@ -37,7 +39,7 @@ class PersonaController extends Controller
             'rut' => 'required|string|unique:personas,rut',
             'telefono' => 'nullable|string|max:15',
             'email' => 'required|string|email|max:100|unique:personas,email',
-            'domicilio_id' => 'nullable',
+            'domicilio_id' => 'nullable|exists:domicilios,id',
         ]);
 
         Persona::create($request->all());
@@ -48,14 +50,15 @@ class PersonaController extends Controller
 
     public function show($id)
     {
-        $persona = Persona::findOrFail($id);
+        $persona = Persona::with('domicilio')->findOrFail($id);
         return view('personas.show', compact('persona'));
     }
 
     public function edit($id)
     {
         $persona = Persona::findOrFail($id);
-        return view('personas.edit', compact('persona'));
+        $domicilios = Domicilio::all();
+        return view('personas.edit', compact('persona', 'domicilios'));
     }
 
     public function update(Request $request, $id)
@@ -69,7 +72,7 @@ class PersonaController extends Controller
             'rut' => 'required|string|unique:personas,rut,'.$id,
             'telefono' => 'nullable|string|max:15',
             'email' => 'required|string|email|max:100|unique:personas,email,'.$id,
-            'domicilio_id' => 'nullable',
+            'domicilio_id' => 'nullable|exists:domicilios,id',
         ]);
 
         $persona = Persona::findOrFail($id);
@@ -88,3 +91,4 @@ class PersonaController extends Controller
             ->with('success', 'Persona eliminada exitosamente.');
     }
 }
+

@@ -11,7 +11,7 @@
             </h6>
         </div>
         <div class="card-body">
-            <p><strong>Nombre:</strong> {{ $condicion->nombre }}</p>
+            <p><strong>Nombre de la condición:</strong> {{ $condicion->nombre }}</p>
             <p><strong>Descripción:</strong> {{ $condicion->descripcion }}</p>
             <a href="{{ route('condiciones.index') }}" class="btn btn-primary">Volver a la lista</a>
         </div>

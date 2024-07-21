@@ -2,33 +2,53 @@
 
 @section('content')
 <div class="container">
-    <h1>Alergias</h1>
-    <a href="{{ route('alergias.create') }}" class="btn btn-primary">Crear Alergia</a>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($alergias as $alergia)
-        <tr>
-            <td>{{ $alergia->nombre }}</td>
-            <td>{{ $alergia->descripcion }}</td>
-            <td>
-                <a href="{{ route('alergias.show', $alergia->id) }}" class="btn btn-info">Ver</a>
-                <a href="{{ route('alergias.edit', $alergia->id) }}" class="btn btn-warning">Editar</a>
-                <form action="{{ route('alergias.destroy', $alergia->id) }}" method="POST" style="display:inline-block;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                Alergias
+            </h5>
+            <h6 class="card-subtitle text-muted">
+                Gestión de alergias
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Tipo de alergia</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Párvulo</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($alergias as $alergia)
+                    <tr>
+                        <td>{{ $alergia->nombre }}</td>
+                        <td>{{ $alergia->descripcion }}</td>
+                        <td>{{ $alergia->alumno->alumno->nombre1 }} {{ $alergia->alumno->alumno->apellido1 }}</td>
+                        <td>
+                            <a href="{{ route('alergias.show', $alergia->id) }}" class="btn btn-sm btn-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{{ route('alergias.edit', $alergia->id) }}" class="btn btn-sm btn-warning">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <form action="{{ route('alergias.destroy', $alergia->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

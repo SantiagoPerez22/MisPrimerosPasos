@@ -8,16 +8,16 @@
                 Crear Informe Semanal
             </h5>
             <h6 class="card-subtitle text-muted">
-                Añadir un nuevo informe semanal al sistema
+                Añadir nuevo informe semanal al sistema
             </h6>
         </div>
         <div class="card-body">
             <form action="{{ route('informes_semanales.store') }}" method="POST">
                 @csrf
                 <div class="form-group mb-3">
-                    <label for="id_alumno" class="form-label">Alumno</label>
+                    <label for="id_alumno" class="form-label">Párvulo</label>
                     <select name="id_alumno" class="form-control" id="id_alumno" required>
-                        <option value="">Selecciona un alumno</option>
+                        <option value="">Seleccionar párvulo</option>
                         @foreach ($tutoresAlumnos as $tutorAlumno)
                         <option value="{{ $tutorAlumno->id }}">{{ $tutorAlumno->alumno->nombre1 }} {{ $tutorAlumno->alumno->apellido1 }}</option>
                         @endforeach
@@ -41,3 +41,13 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dateInput = document.getElementById('fecha');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+    });
+</script>
+@endpush

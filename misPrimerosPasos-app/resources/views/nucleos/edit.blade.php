@@ -5,7 +5,7 @@
     <div class="card border-0">
         <div class="card-header">
             <h5 class="card-title">
-                Editar Nucleo
+                Editar Núcleo
             </h5>
             <h6 class="card-subtitle text-muted">
                 Modificar los detalles del núcleo
@@ -16,7 +16,7 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group mb-3">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Nombre del núcleo</label>
                     <input type="text" name="nombre" class="form-control" value="{{ $nucleo->nombre }}" required>
                 </div>
                 <div class="form-group mb-3">

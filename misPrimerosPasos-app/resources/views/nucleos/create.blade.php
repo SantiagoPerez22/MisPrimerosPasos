@@ -5,7 +5,7 @@
     <div class="card border-0">
         <div class="card-header">
             <h5 class="card-title">
-                Agregar Nucleo
+                Agregar Núcleo
             </h5>
             <h6 class="card-subtitle text-muted">
                 Añadir un nuevo núcleo al sistema
@@ -15,7 +15,7 @@
             <form action="{{ route('nucleos.store') }}" method="POST">
                 @csrf
                 <div class="form-group mb-3">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Nombre del núcleo</label>
                     <input type="text" name="nombre" class="form-control" required>
                 </div>
                 <div class="form-group mb-3">

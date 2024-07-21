@@ -16,7 +16,7 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Nombre de la condición</label>
                     <input type="text" name="nombre" class="form-control" value="{{ $condicion->nombre }}" required>
                 </div>
                 <div class="form-group">

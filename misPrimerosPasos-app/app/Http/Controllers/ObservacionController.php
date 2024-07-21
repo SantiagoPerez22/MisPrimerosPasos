@@ -26,7 +26,7 @@ class ObservacionController extends Controller
 
     public function create()
     {
-        $clases = Clase::with('nivel')->get();
+        $clases = Clase::all();
         $tutoresAlumnos = TutorAlumno::with('alumno')->get();
         return view('observaciones.create', compact('clases', 'tutoresAlumnos'));
     }

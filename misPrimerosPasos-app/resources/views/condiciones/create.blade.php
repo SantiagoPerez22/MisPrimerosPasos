@@ -8,14 +8,14 @@
                 Agregar Condición
             </h5>
             <h6 class="card-subtitle text-muted">
-                Agregar una nueva condición
+                Agregar nueva condición
             </h6>
         </div>
         <div class="card-body">
             <form action="{{ route('condiciones.store') }}" method="POST">
                 @csrf
                 <div class="form-group mb-3">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Nombre de condición</label>
                     <input type="text" name="nombre" class="form-control" id="nombre" required>
                 </div>
                 <div class="form-group mb-3">

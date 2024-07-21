@@ -16,7 +16,7 @@
                     </form>
                     <a href="#" class="dropdown-item"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Logout
+                        Cerrar sesión
                     </a>
                 </div>
             </li>

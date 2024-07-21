@@ -1,31 +1,20 @@
-<!-- resources/views/domicilios/show.blade.php -->
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <h1>Detalles del Domicilio</h1>
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <td>{{ $domicilio->id }}</td>
-        </tr>
-        <tr>
-            <th>Dirección</th>
-            <td>{{ $domicilio->direccion }}</td>
-        </tr>
-        <tr>
-            <th>Ciudad</th>
-            <td>{{ $domicilio->ciudad }}</td>
-        </tr>
-        <tr>
-            <th>Estado</th>
-            <td>{{ $domicilio->estado }}</td>
-        </tr>
-        <tr>
-            <th>Código Postal</th>
-            <td>{{ $domicilio->codigo_postal }}</td>
-        </tr>
-    </table>
-    <a href="{{ route('domicilios.index') }}" class="btn btn-primary">Volver a la lista</a>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">Detalles del Domicilio</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Domicilio #{{ $domicilio->id }}</h6>
+        </div>
+        <div class="card-body">
+            <p><strong>ID:</strong> {{ $domicilio->id }}</p>
+            <p><strong>Dirección:</strong> {{ $domicilio->direccion }}</p>
+            <p><strong>Ciudad:</strong> {{ $domicilio->ciudad }}</p>
+            <p><strong>Región:</strong> {{ $domicilio->estado }}</p>
+            <p><strong>Código Postal:</strong> {{ $domicilio->codigo_postal }}</p>
+            <a href="{{ route('domicilios.index') }}" class="btn btn-primary">Volver a la lista</a>
+        </div>
+    </div>
 </div>
 @endsection

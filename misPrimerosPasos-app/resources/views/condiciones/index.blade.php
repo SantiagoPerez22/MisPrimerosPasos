@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
+                            <th>Nombre de la condición</th>
                             <th>Descripción</th>
                             <th>Acciones</th>
                         </tr>

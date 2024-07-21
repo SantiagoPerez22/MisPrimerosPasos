@@ -50,3 +50,11 @@ function isLight() {
 }
 
 // No es necesario repetir la lógica del tema aquí
+// public/script.js
+document.addEventListener('DOMContentLoaded', function () {
+    const dateInput = document.getElementById('fecha');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+    }
+});

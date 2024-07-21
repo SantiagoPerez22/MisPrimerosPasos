@@ -23,7 +23,7 @@
                     <input type="text" class="form-control" id="ciudad" name="ciudad" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="estado">Estado</label>
+                    <label for="estado">Región</label>
                     <input type="text" class="form-control" id="estado" name="estado" required>
                 </div>
                 <div class="form-group mb-3">

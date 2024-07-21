@@ -2,39 +2,59 @@
 
 @section('content')
 <div class="container">
-    <h1>Observaciones</h1>
-    <a href="{{ route('observaciones.create') }}" class="btn btn-primary">Crear Observación</a>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Clase (Nivel)</th>
-            <th>Alumno</th>
-            <th>Cuenta</th>
-            <th>Observaciones</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($observaciones as $observacion)
-        <tr>
-            <td>{{ $observacion->clase->nivel->nombre }}</td>
-            <td>{{ $observacion->alumno->alumno->nombre1 }} {{ $observacion->alumno->alumno->apellido1 }}</td>
-            <td>{{ $observacion->cuenta->name }}</td>
-            <td>{{ $observacion->observaciones }}</td>
-            <td>{{ $observacion->fecha }}</td>
-            <td>
-                <a href="{{ route('observaciones.show', $observacion->id) }}" class="btn btn-info">Ver</a>
-                <a href="{{ route('observaciones.edit', $observacion->id) }}" class="btn btn-warning">Editar</a>
-                <form action="{{ route('observaciones.destroy', $observacion->id) }}" method="POST" style="display:inline-block;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
+    <div class="card border-0">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="card-title mb-0">
+                    Observaciones
+                </h5>
+                <h6 class="card-subtitle text-muted">
+                    Listado de observaciones en el sistema
+                </h6>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Clase (Nivel)</th>
+                        <th>Párvulo</th>
+                        <th>Cuenta</th>
+                        <th>Observaciones</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($observaciones as $observacion)
+                    <tr>
+                        <td>{{ $observacion->clase->nivel->nombre }} | {{ $observacion->clase->fecha }}</td>
+                        <td>{{ $observacion->alumno->alumno->nombre1 }} {{ $observacion->alumno->alumno->apellido1 }}</td>
+                        <td>{{ $observacion->cuenta->name }}</td>
+                        <td>{{ $observacion->observaciones }}</td>
+                        <td>{{ $observacion->fecha }}</td>
+                        <td>
+                            <a href="{{ route('observaciones.show', $observacion->id) }}" class="btn btn-sm btn-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{{ route('observaciones.edit', $observacion->id) }}" class="btn btn-sm btn-warning">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <form action="{{ route('observaciones.destroy', $observacion->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

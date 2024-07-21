@@ -7,16 +7,16 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+            {{ __('Ésta área es segura dentro de la aplicación. Por favor conforma tu contraseña antes de continuar.') }}
         </div>
 
-        <!-- Validation Errors -->
+        <!-- Validación de errores -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('password.confirm') }}">
             @csrf
 
-            <!-- Password -->
+            <!-- Contraseña -->
             <div>
                 <x-label for="password" :value="__('Password')" />
 
@@ -28,7 +28,7 @@
 
             <div class="flex justify-end mt-4">
                 <x-button>
-                    {{ __('Confirm') }}
+                    {{ __('Confirmar') }}
                 </x-button>
             </div>
         </form>

@@ -8,7 +8,7 @@
             {{ $user->name }}
         </div>
         <div class="card-body">
-            <p class="card-text"><strong>Email:</strong> {{ $user->email }}</p>
+            <p class="card-text"><strong>Correo electrónico:</strong> {{ $user->email }}</p>
             <p class="card-text"><strong>Persona:</strong> {{ $user->persona->nombre1 }} {{ $user->persona->apellido1 }}</p>
             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Editar</a>
             <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;">

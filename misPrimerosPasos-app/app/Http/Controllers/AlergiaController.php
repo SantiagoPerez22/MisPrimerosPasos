@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alergia;
+use App\Models\TutorAlumno;
 use Illuminate\Http\Request;
 
 class AlergiaController extends Controller
@@ -17,13 +18,14 @@ class AlergiaController extends Controller
 
     public function index()
     {
-        $alergias = Alergia::all();
+        $alergias = Alergia::with('alumno.alumno')->get();
         return view('alergias.index', compact('alergias'));
     }
 
     public function create()
     {
-        return view('alergias.create');
+        $tutoresAlumnos = TutorAlumno::with('alumno')->get();
+        return view('alergias.create', compact('tutoresAlumnos'));
     }
 
     public function store(Request $request)
@@ -31,7 +33,7 @@ class AlergiaController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:50',
             'descripcion' => 'nullable|string',
-            'id_alumno' => 'required',
+            'id_alumno' => 'required|exists:tutor_alumno,id',
         ]);
 
         Alergia::create($request->all());
@@ -42,14 +44,15 @@ class AlergiaController extends Controller
 
     public function show($id)
     {
-        $alergia = Alergia::findOrFail($id);
+        $alergia = Alergia::with('alumno.alumno')->findOrFail($id);
         return view('alergias.show', compact('alergia'));
     }
 
     public function edit($id)
     {
         $alergia = Alergia::findOrFail($id);
-        return view('alergias.edit', compact('alergia'));
+        $tutoresAlumnos = TutorAlumno::with('alumno')->get();
+        return view('alergias.edit', compact('alergia', 'tutoresAlumnos'));
     }
 
     public function update(Request $request, $id)
@@ -57,7 +60,7 @@ class AlergiaController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:50',
             'descripcion' => 'nullable|string',
-            'id_alumno' => 'required',
+            'id_alumno' => 'required|exists:tutor_alumno,id',
         ]);
 
         $alergia = Alergia::findOrFail($id);

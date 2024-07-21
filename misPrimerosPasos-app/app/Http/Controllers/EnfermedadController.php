@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enfermedad;
+use App\Models\TutorAlumno;
 use Illuminate\Http\Request;
 
 class EnfermedadController extends Controller
@@ -17,13 +18,14 @@ class EnfermedadController extends Controller
 
     public function index()
     {
-        $enfermedades = Enfermedad::all();
+        $enfermedades = Enfermedad::with('alumno.alumno')->get();
         return view('enfermedades.index', compact('enfermedades'));
     }
 
     public function create()
     {
-        return view('enfermedades.create');
+        $tutoresAlumnos = TutorAlumno::with('alumno')->get();
+        return view('enfermedades.create', compact('tutoresAlumnos'));
     }
 
     public function store(Request $request)
@@ -31,7 +33,7 @@ class EnfermedadController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:50',
             'descripcion' => 'nullable|string',
-            'id_alumno' => 'required',
+            'id_alumno' => 'required|exists:tutor_alumno,id',
         ]);
 
         Enfermedad::create($request->all());
@@ -42,14 +44,15 @@ class EnfermedadController extends Controller
 
     public function show($id)
     {
-        $enfermedad = Enfermedad::findOrFail($id);
+        $enfermedad = Enfermedad::with('alumno.alumno')->findOrFail($id);
         return view('enfermedades.show', compact('enfermedad'));
     }
 
     public function edit($id)
     {
         $enfermedad = Enfermedad::findOrFail($id);
-        return view('enfermedades.edit', compact('enfermedad'));
+        $tutoresAlumnos = TutorAlumno::with('alumno')->get();
+        return view('enfermedades.edit', compact('enfermedad', 'tutoresAlumnos'));
     }
 
     public function update(Request $request, $id)
@@ -57,7 +60,7 @@ class EnfermedadController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:50',
             'descripcion' => 'nullable|string',
-            'id_alumno' => 'required',
+            'id_alumno' => 'required|exists:tutor_alumno,id',
         ]);
 
         $enfermedad = Enfermedad::findOrFail($id);

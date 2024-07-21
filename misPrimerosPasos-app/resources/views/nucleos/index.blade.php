@@ -18,7 +18,7 @@
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Nombre del núcleo</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Acciones</th>
                     </tr>

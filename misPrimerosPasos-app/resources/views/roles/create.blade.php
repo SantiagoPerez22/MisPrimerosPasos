@@ -36,10 +36,10 @@
                                 <thead>
                                 <tr>
                                     <th>Permiso</th>
-                                    <th>View</th>
-                                    <th>Create</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Ver</th>
+                                    <th>Crear</th>
+                                    <th>Editar</th>
+                                    <th>Borrar</th>
                                 </tr>
                                 </thead>
                                 <tbody>

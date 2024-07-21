@@ -2,23 +2,33 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar Enfermedad</h1>
-    <form action="{{ route('enfermedades.update', $enfermedad->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" name="nombre" class="form-control" id="nombre" value="{{ $enfermedad->nombre }}" required>
+    <div class="card border-0">
+        <div class="card-header">
+            <h5 class="card-title">Editar Enfermedad</h5>
         </div>
-        <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea name="descripcion" class="form-control" id="descripcion">{{ $enfermedad->descripcion }}</textarea>
+        <div class="card-body">
+            <form action="{{ route('enfermedades.update', $enfermedad->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <p>
+                    <strong>Tipo de enfermedad:</strong>
+                    <input type="text" name="nombre" class="form-control" id="nombre" value="{{ $enfermedad->nombre }}" required>
+                </p>
+                <p>
+                    <strong>Descripción:</strong>
+                    <textarea name="descripcion" class="form-control" id="descripcion">{{ $enfermedad->descripcion }}</textarea>
+                </p>
+                <p>
+                    <strong>Párvulo:</strong>
+                    <select name="id_alumno" class="form-control" id="id_alumno" required>
+                        @foreach ($tutoresAlumnos as $tutorAlumno)
+                        <option value="{{ $tutorAlumno->id }}" {{ $tutorAlumno->id == $enfermedad->id_alumno ? 'selected' : '' }}>{{ $tutorAlumno->alumno->nombre1 }} {{ $tutorAlumno->alumno->apellido1 }}</option>
+                        @endforeach
+                    </select>
+                </p>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="id_alumno" class="form-label">ID Alumno</label>
-            <input type="number" name="id_alumno" class="form-control" id="id_alumno" value="{{ $enfermedad->id_alumno }}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-    </form>
+    </div>
 </div>
 @endsection
