@@ -20,7 +20,7 @@ use App\Http\Controllers\InformeSemanalController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ObservacionController;
-use App\Models\Persona;
+use App\Http\Controllers\DashboardController;
 use App\Models\TutorAlumno;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
@@ -36,12 +36,11 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::middleware(['role:Administrador|Profesor|Asistente|Tutor|Auditor'])->group(function () {
-        Route::get('roles-usuarios', [RoleController::class, 'indexUsersRoles'])->name('roles.indexUsersRoles');        Route::get('roles/assign', [RoleController::class, 'assignRolesForm'])->name('roles.assign.form');
+        Route::get('roles-usuarios', [RoleController::class, 'indexUsersRoles'])->name('roles.indexUsersRoles');
+        Route::get('roles/assign', [RoleController::class, 'assignRolesForm'])->name('roles.assign.form');
         Route::post('roles/assign', [RoleController::class, 'assignRoles'])->name('roles.assign');
         Route::get('roles/permissions', [RoleController::class, 'managePermissionsForm'])->name('roles.permissions.form');
         Route::post('roles/permissions', [RoleController::class, 'managePermissions'])->name('roles.permissions');
@@ -52,16 +51,12 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('roles', RoleController::class);
         Route::get('users/{user}/roles', [RoleController::class, 'getUserRoles']);
 
-
         Route::get('/select-alumno', function() {
             $alumnos = TutorAlumno::with('alumno')->get()->pluck('alumno')->unique('id');
             return view('select-alumno', compact('alumnos'));
         })->name('select.alumno');
 
         Route::get('/exportar-pdf', [ExportController::class, 'exportarPDF'])->name('exportar.pdf');
-
-
-
     });
 
     Route::middleware(['permission:view user|create user|edit user|delete user'])->group(function () {
