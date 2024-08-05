@@ -14,6 +14,7 @@ class Observaciones extends Migration
             $table->unsignedBigInteger('id_clase');
             $table->unsignedBigInteger('id_cuenta'); // Nuevo campo
             $table->text('observaciones');
+            $table->string('imagen')->nullable();
             $table->date('fecha');
             $table->timestamps();
 

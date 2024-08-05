@@ -38,4 +38,34 @@ class TutorAlumno extends Model
     {
         return $this->belongsTo(Nivel::class, 'id_nivel');
     }
+
+    public function observaciones()
+    {
+        return $this->hasMany(Observacion::class, 'id_alumno', 'id');
+    }
+
+    public function informesSemanales()
+    {
+        return $this->hasMany(InformeSemanal::class, 'id_alumno', 'id');
+    }
+
+    public function informesDiarios()
+    {
+        return $this->hasMany(InformeDiario::class, 'id_alumno', 'id');
+    }
+
+    public function enfermedades()
+    {
+        return $this->hasMany(Enfermedad::class, 'id_alumno', 'id');
+    }
+
+    public function alergias()
+    {
+        return $this->hasMany(Alergia::class, 'id_alumno', 'id');
+    }
+
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class, 'id_alumno', 'id');
+    }
 }

@@ -42,16 +42,16 @@
                         <td>{{ $clase->fecha }}</td>
                         <td>
                             <a href="{{ route('clases.show', $clase->id) }}" class="btn btn-sm btn-info">
-                                <i class="fa fa-eye"></i>
+                                <span class="material-symbols-outlined">visibility</span>
                             </a>
                             <a href="{{ route('clases.edit', $clase->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-pencil"></i>
+                                <span class="material-symbols-outlined">edit</span>
                             </a>
                             <form action="{{ route('clases.destroy', $clase->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
+                                    <span class="material-symbols-outlined">delete</span>
                                 </button>
                             </form>
                         </td>

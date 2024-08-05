@@ -36,7 +36,7 @@ class AsistenciaController extends Controller
         $request->validate([
             'id_clase' => 'required|exists:clase,id',
             'id_alumno' => 'required|exists:tutor_alumno,id',
-            'asistencia' => 'required|in:si,no',
+            'asistencia' => 'required|in:Sí,No',
             'fecha' => 'required|date',
         ]);
 
@@ -68,7 +68,7 @@ class AsistenciaController extends Controller
         $request->validate([
             'id_clase' => 'required|exists:clase,id',
             'id_alumno' => 'required|exists:tutor_alumno,id',
-            'asistencia' => 'required|in:si,no',
+            'asistencia' => 'required|in:Sí,No',
             'fecha' => 'required|date',
         ]);
 

@@ -37,7 +37,7 @@
                         <td>
                             @can('edit user')
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-pencil"></i>
+                                <span class="material-symbols-outlined">edit</span>
                             </a>
                             @endcan
                             @can('delete user')
@@ -45,7 +45,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
+                                    <span class="material-symbols-outlined">delete</span>
                                 </button>
                             </form>
                             @endcan

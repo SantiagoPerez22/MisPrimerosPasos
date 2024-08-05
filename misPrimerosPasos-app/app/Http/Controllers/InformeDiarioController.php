@@ -46,7 +46,7 @@ class InformeDiarioController extends Controller
         $data['id_cuenta'] = Auth::id();
 
         if ($request->hasFile('imagen')) {
-            $path = $request->file('imagen')->store('imagenes', 'public');
+            $path = $request->file('imagen')->store('diario', 'public');
             $data['imagen'] = $path;
         }
 
@@ -87,7 +87,7 @@ class InformeDiarioController extends Controller
             if ($informeDiario->imagen) {
                 Storage::disk('public')->delete($informeDiario->imagen);
             }
-            $path = $request->file('imagen')->store('imagenes', 'public');
+            $path = $request->file('imagen')->store('diario', 'public');
             $data['imagen'] = $path;
         }
 

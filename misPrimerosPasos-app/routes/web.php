@@ -52,8 +52,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('users/{user}/roles', [RoleController::class, 'getUserRoles']);
 
         Route::get('/select-alumno', function() {
-            $alumnos = TutorAlumno::with('alumno')->get()->pluck('alumno')->unique('id');
-            return view('select-alumno', compact('alumnos'));
+            $tutoresAlumnos = TutorAlumno::with('alumno')->get();
+            return view('select-alumno', compact('tutoresAlumnos'));
         })->name('select.alumno');
 
         Route::get('/exportar-pdf', [ExportController::class, 'exportarPDF'])->name('exportar.pdf');

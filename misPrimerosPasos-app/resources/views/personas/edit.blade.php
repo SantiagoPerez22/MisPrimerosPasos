@@ -27,8 +27,8 @@
                     <input type="text" name="apellido2" class="form-control" value="{{ old('apellido2', $persona->apellido2) }}">
                 </div>
                 <div class="mb-3">
-                    <label for="edad" class="form-label">Edad:</label>
-                    <input type="number" name="edad" class="form-control" value="{{ old('edad', $persona->edad) }}" required>
+                    <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento:</label>
+                    <input type="date" name="fecha_nacimiento" class="form-control" value="{{ old('fecha_nacimiento', $persona->fecha_nacimiento) }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="rut" class="form-label">RUT:</label>

@@ -11,6 +11,10 @@
             <p><strong>Párvulo:</strong> {{ $observacion->alumno->alumno->nombre1 }} {{ $observacion->alumno->alumno->apellido1 }}</p>
             <p><strong>Registrado:</strong> {{ $observacion->cuenta->name }} el {{ $observacion->fecha }}</p>
             <p><strong>Observaciones:</strong> {{ $observacion->observaciones }}</p>
+            @if ($observacion->imagen)
+            <p><strong>Imagen:</strong></p>
+            <img src="{{ asset('storage/' . $observacion->imagen) }}" alt="Imagen" class="img-fluid">
+            @endif
             <a href="{{ route('observaciones.index') }}" class="btn btn-primary">Volver a la lista</a>
         </div>
     </div>

@@ -16,9 +16,9 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
+                        <th scope="col">Párvulo</th>
                         <th scope="col">Tipo de enfermedad</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Párvulo</th>
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
@@ -30,16 +30,16 @@
                         <td>{{ $enfermedad->descripcion }}</td>
                         <td>
                             <a href="{{ route('enfermedades.show', $enfermedad->id) }}" class="btn btn-sm btn-info">
-                                <i class="fa fa-eye"></i>
+                                <span class="material-symbols-outlined">visibility</span>
                             </a>
                             <a href="{{ route('enfermedades.edit', $enfermedad->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-pencil"></i>
+                                <span class="material-symbols-outlined">edit</span>
                             </a>
                             <form action="{{ route('enfermedades.destroy', $enfermedad->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
+                                    <span class="material-symbols-outlined">delete</span>
                                 </button>
                             </form>
                         </td>

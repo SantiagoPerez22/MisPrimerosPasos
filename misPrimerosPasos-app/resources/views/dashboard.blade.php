@@ -53,7 +53,6 @@
                     </div>
                 </div>
             </div>
-            Table Element
             <div class="card border-0">
                 <div class="card-header">
                     <h5 class="card-title">Basic Table</h5>

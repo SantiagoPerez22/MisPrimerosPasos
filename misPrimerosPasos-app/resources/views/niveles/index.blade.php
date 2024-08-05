@@ -11,6 +11,7 @@
             <h6 class="card-subtitle text-muted">
                 Gestión de niveles
             </h6>
+            <a href="{{ route('niveles.create') }}" class="btn btn-primary mt-2">Añadir Nivel</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -31,16 +32,16 @@
                         <td>{{ $nivel->descripcion }}</td>
                         <td>
                             <a href="{{ route('niveles.show', $nivel->id) }}" class="btn btn-sm btn-info">
-                                <i class="fa fa-eye"></i>
+                                <span class="material-symbols-outlined">visibility</span>
                             </a>
                             <a href="{{ route('niveles.edit', $nivel->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-pencil"></i>
+                                <span class="material-symbols-outlined">edit</span>
                             </a>
                             <form action="{{ route('niveles.destroy', $nivel->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
+                                    <span class="material-symbols-outlined">delete</span>
                                 </button>
                             </form>
                         </td>

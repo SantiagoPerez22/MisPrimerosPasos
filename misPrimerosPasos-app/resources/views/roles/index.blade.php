@@ -29,7 +29,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
+                                    <span class="material-symbols-outlined">delete</span>
                                 </button>
                             </form>
                         </td>
@@ -42,4 +42,3 @@
     </div>
 </div>
 @endsection
-

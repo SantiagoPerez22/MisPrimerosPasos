@@ -35,7 +35,7 @@ class PersonaController extends Controller
             'nombre2' => 'nullable|string|max:50',
             'apellido1' => 'required|string|max:50',
             'apellido2' => 'nullable|string|max:50',
-            'edad' => 'required|integer',
+            'fecha_nacimiento' => 'required|date',
             'rut' => 'required|string|unique:personas,rut',
             'telefono' => 'nullable|string|max:15',
             'email' => 'required|string|email|max:100|unique:personas,email',
@@ -68,7 +68,7 @@ class PersonaController extends Controller
             'nombre2' => 'nullable|string|max:50',
             'apellido1' => 'required|string|max:50',
             'apellido2' => 'nullable|string|max:50',
-            'edad' => 'required|integer',
+            'fecha_nacimiento' => 'required|date',
             'rut' => 'required|string|unique:personas,rut,'.$id,
             'telefono' => 'nullable|string|max:15',
             'email' => 'required|string|email|max:100|unique:personas,email,'.$id,
@@ -91,4 +91,3 @@ class PersonaController extends Controller
             ->with('success', 'Persona eliminada exitosamente.');
     }
 }
-

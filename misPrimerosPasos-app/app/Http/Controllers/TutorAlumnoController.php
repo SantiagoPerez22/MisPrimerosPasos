@@ -6,6 +6,7 @@ use App\Models\TutorAlumno;
 use App\Models\Persona;
 use App\Models\Nivel;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TutorAlumnoController extends Controller
 {
@@ -25,8 +26,13 @@ class TutorAlumnoController extends Controller
 
     public function create()
     {
-        $alumnos = Persona::all(); // Assuming Persona model represents students
-        $tutores = Persona::all(); // Assuming Persona model also represents tutors
+        $fechaActual = Carbon::now();
+        $alumnos = Persona::where('fecha_nacimiento', '>=', $fechaActual->copy()->subYears(4))
+            ->where('fecha_nacimiento', '<=', $fechaActual->copy()->subDays(85))
+            ->whereDoesntHave('tutorAlumno')
+            ->get();
+        $tutores = Persona::where('fecha_nacimiento', '<=', $fechaActual->copy()->subYears(14))
+            ->get();
         $niveles = Nivel::all();
         return view('tutor_alumno.create', compact('alumnos', 'tutores', 'niveles'));
     }
@@ -54,8 +60,15 @@ class TutorAlumnoController extends Controller
 
     public function edit(TutorAlumno $tutorAlumno)
     {
-        $alumnos = Persona::all(); // Assuming Persona model represents students
-        $tutores = Persona::all(); // Assuming Persona model also represents tutors
+        $fechaActual = Carbon::now();
+        $alumnos = Persona::where('fecha_nacimiento', '>=', $fechaActual->copy()->subYears(4))
+            ->where('fecha_nacimiento', '<=', $fechaActual->copy()->subDays(85))
+            ->whereDoesntHave('tutorAlumno', function($query) use ($tutorAlumno) {
+                $query->where('id', '<>', $tutorAlumno->id);
+            })
+            ->get();
+        $tutores = Persona::where('fecha_nacimiento', '<=', $fechaActual->copy()->subYears(14))
+            ->get();
         $niveles = Nivel::all();
         return view('tutor_alumno.edit', compact('tutorAlumno', 'alumnos', 'tutores', 'niveles'));
     }

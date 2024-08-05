@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TutorAlumno;
-use App\Models\Persona;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -11,18 +10,29 @@ class ExportController extends Controller
 {
     public function exportarPDF(Request $request)
     {
-        $id_alumno = $request->input('id_alumno');
+        $id_tutor_alumno = $request->input('id_alumno');
 
-        // Obtener todos los datos del modelo TutorAlumno para el ID del alumno
-        $datos = TutorAlumno::where('id_alumno', $id_alumno)->get();
+        // Obtener el modelo TutorAlumno usando el id de la tabla tutor_alumno
+        $tutorAlumno = TutorAlumno::with([
+            'alumno',
+            'tutor1',
+            'tutor2',
+            'nivel',
+            'observaciones',
+            'informesSemanales',
+            'informesDiarios',
+            'enfermedades',
+            'alergias',
+            'asistencias'
+        ])->find($id_tutor_alumno);
 
         // Verificar si se encontraron datos
-        if ($datos->isEmpty()) {
+        if (!$tutorAlumno) {
             return response()->json(['error' => 'No se encontraron datos para el ID del alumno especificado'], 404);
         }
 
         // Generar el PDF
-        $pdf = PDF::loadView('pdf', compact('datos'));
+        $pdf = PDF::loadView('pdf', compact('tutorAlumno'));
 
         // Descargar el PDF
         return $pdf->download('reporte.pdf');

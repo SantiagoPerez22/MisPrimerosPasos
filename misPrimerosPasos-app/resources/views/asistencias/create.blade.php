@@ -35,8 +35,8 @@
                 <div class="form-group mb-3">
                     <label for="asistencia" class="form-label">Asistencia</label>
                     <select name="asistencia" class="form-control" id="asistencia" required>
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
                     </select>
                 </div>
                 <div class="form-group mb-3">

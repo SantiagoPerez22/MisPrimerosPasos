@@ -13,7 +13,7 @@ class Asistencia extends Migration
             $table->unsignedBigInteger('id_alumno');
             $table->unsignedBigInteger('id_clase');
             $table->unsignedBigInteger('id_cuenta'); // Nuevo campo
-            $table->enum('asistencia', ['si', 'no']);
+            $table->enum('asistencia', ['Sí', 'No']);
             $table->date('fecha');
             $table->timestamps();
 

@@ -32,6 +32,20 @@
                     <label for="observaciones" class="form-label">Observaciones</label>
                     <textarea name="observaciones" class="form-control" id="observaciones" required>{{ $observacion->observaciones }}</textarea>
                 </div>
+
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen</label>
+                    <input type="file" name="imagen" class="form-control @error('imagen') is-invalid @enderror" id="imagen">
+                    @if ($informeDiario->imagen)
+                    <img src="{{ asset('storage/' . $observacion->imagen) }}" alt="Imagen" class="img-thumbnail mt-2" width="150">
+                    @endif
+                    @error('imagen')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
                     <input type="date" name="fecha" class="form-control" id="fecha" value="{{ $observacion->fecha }}" required>

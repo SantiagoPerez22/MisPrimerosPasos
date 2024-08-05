@@ -59,16 +59,10 @@
 
 @push('scripts')
 <script>
-    // public/script.js
     document.addEventListener('DOMContentLoaded', function () {
         const dateInput = document.getElementById('fecha_matricula');
-        if (dateInput) {
-            const today = new Date().toISOString().split('T')[0];
-            console.log("Setting date to:", today); // Debugging line
-            dateInput.value = today;
-        } else {
-            console.log("Date input not found."); // Debugging line
-        }
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
     });
 </script>
 @endpush

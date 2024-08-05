@@ -7,6 +7,7 @@ use App\Models\Clase;
 use App\Models\TutorAlumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ObservacionController extends Controller
 {
@@ -37,11 +38,17 @@ class ObservacionController extends Controller
             'id_clase' => 'required|exists:clase,id',
             'id_alumno' => 'required|exists:tutor_alumno,id',
             'observaciones' => 'required|string',
+            'imagen' => 'nullable|image|max:2048', // Validación para la imagen
             'fecha' => 'required|date',
         ]);
 
         $data = $request->all();
         $data['id_cuenta'] = Auth::id();
+
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('observaciones', 'public');
+            $data['imagen'] = $path;
+        }
 
         Observacion::create($data);
 
@@ -69,11 +76,20 @@ class ObservacionController extends Controller
             'id_clase' => 'required|exists:clase,id',
             'id_alumno' => 'required|exists:tutor_alumno,id',
             'observaciones' => 'required|string',
+            'imagen' => 'nullable|image|max:2048', // Validación para la imagen
             'fecha' => 'required|date',
         ]);
 
         $observacion = Observacion::findOrFail($id);
         $data = $request->all();
+
+        if ($request->hasFile('imagen')) {
+            if ($observacion->imagen) {
+                Storage::disk('public')->delete($observacion->imagen);
+            }
+            $path = $request->file('imagen')->store('observaciones', 'public');
+            $data['imagen'] = $path;
+        }
 
         $observacion->update($data);
 
@@ -84,6 +100,9 @@ class ObservacionController extends Controller
     public function destroy($id)
     {
         $observacion = Observacion::findOrFail($id);
+        if ($observacion->imagen) {
+            Storage::disk('public')->delete($observacion->imagen);
+        }
         $observacion->delete();
 
         return redirect()->route('observaciones.index')

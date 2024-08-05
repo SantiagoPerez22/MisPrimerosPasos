@@ -14,7 +14,7 @@ class Personas extends Migration
             $table->string('nombre2', 50)->nullable();
             $table->string('apellido1', 50);
             $table->string('apellido2', 50)->nullable();
-            $table->integer('edad');
+            $table->date('fecha_nacimiento');
             $table->string('rut', 12)->unique();
             $table->string('telefono', 15)->nullable();
             $table->string('email', 100)->unique();

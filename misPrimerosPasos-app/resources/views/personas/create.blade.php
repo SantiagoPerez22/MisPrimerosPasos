@@ -31,8 +31,8 @@
                     <input type="text" name="apellido2" class="form-control" id="apellido2">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="edad" class="form-label">Edad</label>
-                    <input type="number" name="edad" class="form-control" id="edad" required>
+                    <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" required>
                 </div>
                 <div class="form-group mb-3">
                     <label for="rut" class="form-label">RUT</label>

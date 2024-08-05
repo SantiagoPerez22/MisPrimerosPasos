@@ -16,6 +16,7 @@ class Observacion extends Model
         'id_clase',
         'id_cuenta',
         'observaciones',
+        'imagen',
         'fecha'
     ];
 

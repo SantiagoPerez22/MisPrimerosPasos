@@ -30,16 +30,16 @@
                         <td>{{ $alergia->alumno->alumno->nombre1 }} {{ $alergia->alumno->alumno->apellido1 }}</td>
                         <td>
                             <a href="{{ route('alergias.show', $alergia->id) }}" class="btn btn-sm btn-info">
-                                <i class="fa fa-eye"></i>
+                                <span class="material-symbols-outlined">visibility</span>
                             </a>
                             <a href="{{ route('alergias.edit', $alergia->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-pencil"></i>
+                                <span class="material-symbols-outlined">edit</span>
                             </a>
                             <form action="{{ route('alergias.destroy', $alergia->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
+                                    <span class="material-symbols-outlined">delete</span>
                                 </button>
                             </form>
                         </td>

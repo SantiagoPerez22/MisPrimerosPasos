@@ -29,21 +29,27 @@
                     <tr>
                         <td>{{ $persona->nombre1 }} {{ $persona->nombre2 }}</td>
                         <td>{{ $persona->apellido1 }} {{ $persona->apellido2 }}</td>
-                        <td>{{ $persona->edad }}</td>
+                        <td>
+                            @if($persona->dias_desde_nacimiento >= 85)
+                            {{ $persona->edad }}
+                            @else
+                            <span class="text-warning">Edad menor a 85 días</span>
+                            @endif
+                        </td>
                         <td>{{ $persona->rut }}</td>
                         <td>{{ $persona->email }}</td>
                         <td>
                             <a href="{{ route('personas.show', $persona->id) }}" class="btn btn-sm btn-info">
-                                <i class="fa fa-eye"></i>
+                                <span class="material-symbols-outlined">visibility</span>
                             </a>
                             <a href="{{ route('personas.edit', $persona->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-pencil"></i>
+                                <span class="material-symbols-outlined">edit</span>
                             </a>
                             <form action="{{ route('personas.destroy', $persona->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
+                                    <span class="material-symbols-outlined">delete</span>
                                 </button>
                             </form>
                         </td>

@@ -60,13 +60,3 @@
     });
 </script>
 @endpush
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dateInput = document.getElementById('fecha');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.value = today;
-    });
-</script>
-@endpush

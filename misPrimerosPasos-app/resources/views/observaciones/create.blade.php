@@ -37,6 +37,10 @@
                     <textarea name="observaciones" class="form-control" id="observaciones" required></textarea>
                 </div>
                 <div class="form-group mb-3">
+                    <label for="imagen" class="form-label">Imagen</label>
+                    <input type="file" name="imagen" class="form-control" id="imagen">
+                </div>
+                <div class="form-group mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
                     <input type="date" name="fecha" class="form-control" id="fecha" required>
                 </div>

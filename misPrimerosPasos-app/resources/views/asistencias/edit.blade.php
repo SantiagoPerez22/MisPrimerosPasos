@@ -33,8 +33,8 @@
                 <div class="mb-3">
                     <label for="asistencia" class="form-label">Asistencia</label>
                     <select name="asistencia" class="form-control" id="asistencia" required>
-                        <option value="si" {{ $asistencia->asistencia == 'si' ? 'selected' : '' }}>Sí</option>
-                        <option value="no" {{ $asistencia->asistencia == 'no' ? 'selected' : '' }}>No</option>
+                        <option value="si" {{ $asistencia->asistencia == 'Sí' ? 'selected' : '' }}>Sí</option>
+                        <option value="no" {{ $asistencia->asistencia == 'No' ? 'selected' : '' }}>No</option>
                     </select>
                 </div>
                 <div class="mb-3">
